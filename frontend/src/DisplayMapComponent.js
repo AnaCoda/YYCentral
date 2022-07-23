@@ -50,6 +50,14 @@ export const DisplayMapComponent = () =>
 		console.log('rendering')
 		setUI(ui)
 
+		var mapSettings = ui.getControl('mapsettings');
+		var zoom = ui.getControl('zoom');
+		var scalebar = ui.getControl('scalebar');
+
+		mapSettings.setAlignment('top-center');
+		zoom.setAlignment('top-center');
+		scalebar.setAlignment('top-center');
+
 		// This will act as a cleanup to run once this hook runs again.
 		// This includes when the component un-mounts
 		return () =>
@@ -85,7 +93,7 @@ export const DisplayMapComponent = () =>
 		events.forEach((event) =>
 		{
 			const newMarker = new H.map.Marker({ lat: event.latitude, lng: event.longitude })
-			newMarker.setData(`<div><a href="${event.url}">${event.title}</a>`)
+			newMarker.setData(`<div><a href="${event.url}">${event.title}</a><br>`)
 			newMarker.addEventListener('tap', tapevent=>{
 				const bubble = new H.ui.InfoBubble({lat:event.latitude, lng: event.longitude},
 				 {
