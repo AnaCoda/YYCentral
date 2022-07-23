@@ -1,0 +1,37 @@
+.card{
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem;
+    max-width: 500px;
+    min-height: 200px;
+    min-width: 200px;
+    padding: 1rem;
+    z-index: 1;
+    box-sizing: border-box;
+    max-height: 100vh;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.card__header__title{
+    font-size: 2rem;
+    color: red;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.card__body{
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    overflow-y: auto;
+}
