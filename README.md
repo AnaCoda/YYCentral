@@ -1,14 +1,7 @@
-# Django-React Boilerplate Template
-This is a boilerplate/template project that can be used to build any websites (portfolio, e-commerce etc.) with Django backend and React frontend. It follows the Hybrid Model, which means it can be deployed as a single unit into the same server. It is set up to use session-based authentication and includes an example of how to use them. It also provides safety from CSRF attacks. This template does not require you to spin up different servers for backend and frontend. The Django server itself acts as a container to run the React application.
-
-> The frontend part of the code is given as an example and is not regularly updated. It is highly advisable to discard the frontend part only for reference and roll your own frontend.
-
 ## Installation
 Run following commands where you want to create the project
 ```cmd
-django-admin.py startproject --template=https://github.com/Parijat29/django-react-boilerplate/archive/master.zip <project_name>
-cd <project_name>
-pip install requirements.txt
+pip install -r requirements.txt
 cd frontend
 npm install
 ```
@@ -29,20 +22,6 @@ python manage.py createsuperuser
 python manage.py runserver
 cd frontend
 npm start
-```
-
-### Production mode
-Run following commands at the root of the project directory
-```cmd
-cd frontend
-npm run build
-cd ..
-SET DJANGO_ENV=production
-python manage.py collectstatic
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser
-waitress-serve backend.wsgi:application
 ```
 
 ## Dependencies
