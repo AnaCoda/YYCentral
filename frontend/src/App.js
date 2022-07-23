@@ -68,7 +68,6 @@ function AppEntry() {
                   <DisplayMapComponent/>
                </div>
             </PrivateRoute>
-            
          </Switch>
       </section>
    );
