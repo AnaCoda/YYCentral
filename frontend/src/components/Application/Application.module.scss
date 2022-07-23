@@ -1,4 +1,25 @@
 .application{
     height: 100vh;
     overflow: hidden;
+    display: block;
+}
+
+.overlay{
+    display: flex;
+    flex-flow: row;
+    flex: 1;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card__container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100vh;
+    width: 100vw
 }
