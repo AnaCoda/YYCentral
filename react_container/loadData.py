@@ -33,20 +33,17 @@ class DataLoader():
         import pandas as pd
         import csv
         import geocoder
-        from geopy.geocoders import Nominatim
 
         result_instances = []
-        geolocator = Nominatim(user_agent="MyApp")
-        with open('react_container/files/CalgaryRestaurants.csv') as csv_file:
+        with open('react_container/files/CalgaryRestaurantsLong.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             for row in csv_reader:
                 address = row[1]
-                location = geolocator.geocode(address)
-                if location is not None:
-                    try:
-                        newRestaurant = Restaurant(row[0], address, row[2], row[3], row[4], row[5], row[6], location.latitude, location.longitude)
+                try:
+                    if address is not None:
+                        newRestaurant = Restaurant(str(row[0]), address, str(row[2]), row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10])
                         result_instances.append(newRestaurant)
-                    except:
-                        pass
+                except:
+                    pass
         Restaurant.objects.all().delete()
         Restaurant.objects.bulk_create(result_instances)

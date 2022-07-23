@@ -82,6 +82,7 @@ export const DisplayMapComponent = () =>
 			.then(data =>
 			{
 				setEvents(data)
+				console.log(data)
 			});
 	}, []);
 
