@@ -119,12 +119,6 @@ export const DisplayMapComponent = () =>
 				newMarker.setIcon(eventIcon)
 			}
 			newMarker.addEventListener('tap', tapevent=>{
-				const bubble = new H.ui.InfoBubble({lat:event.latitude, lng: event.longitude},
-				 	{
-				  	content: tapevent.target.getData()
-					}
-				);
-
 				dispatch(setEvent(
 					{
 						title: event.title,
@@ -134,10 +128,6 @@ export const DisplayMapComponent = () =>
 						location: event.address,
 					}
 				));
-
-				console.log(event)
-
-				ui.addBubble(bubble);
 			}, false)
 			markerEvents.push(newMarker);
 			map.addObject(newMarker);

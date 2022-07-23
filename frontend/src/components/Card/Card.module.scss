@@ -13,6 +13,8 @@
     min-width: 200px;
     padding: 1rem;
     z-index: 1;
+    box-sizing: border-box;
+    max-height: 100vh;
 }
 
 .wrapper{
@@ -22,10 +24,14 @@
 
 .card__header__title{
     font-size: 2rem;
+    color: red;
+    padding: 0.5rem;
+    border-radius: 5px;
 }
 
 .card__body{
     display: flex;
     flex: 1;
     flex-flow: column;
+    overflow-y: auto;
 }
