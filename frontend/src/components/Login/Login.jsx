@@ -8,42 +8,13 @@ import {
    Link,
    TextField,
    Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from "react-router-dom";
 
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { config } from "./config"
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-   paper: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-   },
-   wrapper: {
-      margin: theme.spacing(1),
-      position: 'relative',
-   },
-   avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-   },
-   form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
-   },
-   submit: {
-      margin: theme.spacing(3, 0, 2),
-   },
-   fabProgress: {
-      position: 'absolute',
-      top: '40%',
-      zIndex: 1,
-   },
-}));
+import { IoLockOpenOutline } from "react-icons/io5";
+import { config } from "../../config"
+import styles from "./Login.module.scss";
 
 function Copyright() {
    return (
@@ -59,8 +30,6 @@ function Copyright() {
 }
 
 export default function SignIn({ updateUserInfo }) {
-   const classes = useStyles();
-
    const [submitting, setSubmitting] = useState(false);
    const [errorMsg, setErrorMsg] = useState("");
    const [loading, setLoading] = useState(true);
@@ -146,17 +115,17 @@ export default function SignIn({ updateUserInfo }) {
    }
 
    return (
-      <div className={classes.wrapper}>
+      <div className={styles.wrapper}>
       <Container component="main" maxWidth="xs">
          <CssBaseline />
-         <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-               <LockOutlinedIcon />
+         <div className={styles.paper}>
+            <Avatar className={styles.avatar}>
+               <IoLockOpenOutline/>
             </Avatar>
             <Typography component="h1" variant="h5">
                Sign in
             </Typography>
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <form className={styles.form} noValidate onSubmit={handleSubmit}>
                <TextField
                   variant="outlined"
                   margin="normal"
@@ -189,13 +158,13 @@ export default function SignIn({ updateUserInfo }) {
                   fullWidth
                   variant="contained"
                   color="primary"
-                  className={classes.submit}
+                  className={styles.submit}
                >
                   Sign In
                </Button>
             </form>
             
-      {(loading || submitting) && <CircularProgress size={68} className={classes.fabProgress} />}
+      {(loading || submitting) && <CircularProgress size={68} className={styles.fabProgress} />}
          </div>
          <Box mt={8}>
             <Copyright />

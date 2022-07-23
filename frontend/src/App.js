@@ -8,7 +8,7 @@ import {
 
 import LandingPage from "./views/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
-import SignIn from './LoginView';
+import SignIn from './components/Login/Login';
 import ToDoView from './ToDoView';
 import styles from './App.module.scss';
 
