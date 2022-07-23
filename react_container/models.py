@@ -19,6 +19,7 @@ class Restaurant(models.Model):
     phone = models.CharField(max_length=20)
     website = models.URLField()
     rating = models.DecimalField(decimal_places=2, max_digits=3)
+    pricing = models.DecimalField(decimal_places=2, max_digits=3)
     description = models.CharField(max_length=500)
     tags = models.CharField(max_length=100)
     image_urls = models.CharField(max_length=800)
