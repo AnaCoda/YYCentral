@@ -1,5 +1,3 @@
-import './App.css';
-
 import React, { useState } from 'react';
 import {
    Redirect,
@@ -11,6 +9,7 @@ import {
 import NavBar from "./components/NavBar/NavBar";
 import SignIn from './LoginView';
 import ToDoView from './ToDoView';
+import styles from './App.module.scss';
 
 function App() {
    return (
@@ -52,19 +51,21 @@ function AppEntry() {
    }
 
    return (
-      <section>
+      <section style={{height: "100vh"}}>
          <Switch>
             <Route path="/login">
-               {/* 
-               Sign In control - Feel free to customize
-                */}
                <SignIn updateUserInfo={updateUserInfo} />
             </Route>
-            {/* <PrivateRoute path="*">
-               
-               <ToDoView userdetails={user} />
-            </PrivateRoute> */}
             <Route path="/nav" component={NavBar} />
+            <PrivateRoute path="*">
+               <div className={styles.app__wrapper}>
+                  <NavBar/>
+                  <div>
+                     <img src="https://media.discordapp.net/attachments/997355637598072852/1000295440576684093/unknown.png" height="1000" alt=""/>
+                  </div>
+               </div>
+            </PrivateRoute>
+            
          </Switch>
       </section>
    );

@@ -1,7 +1,6 @@
 .navbar{
     background-color: #C81042;
-    border-bottom: 1px solid #e5e5e5;
-    box-shadow: 0 1px 0 rgba(0,0,0,.05);
+    box-shadow: -4px 4px 6px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-flow: column nowrap;
     padding: 0.75rem;
@@ -16,6 +15,8 @@
 .navbar__wrapper{
     display: flex;
     height: 100vh;
+    position: absolute;
+    margin: 0 1rem;
 }
 
 .navbar__item{
@@ -38,5 +39,9 @@
     svg{
         color: white;
         font-size: 2rem;
+    }
+
+    &:hover{
+        // background-color: black;
     }
 }
