@@ -1,16 +1,17 @@
 .card{
+    align-items: center;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: -3px 3px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex: 1;
     flex-direction: column;
     justify-content: center;
     margin: 1rem;
-    min-width: 200px;
+    max-width: 500px;
     min-height: 200px;
+    min-width: 200px;
     padding: 1rem;
-    align-items: center;
     z-index: 1;
 }
 
@@ -24,7 +25,7 @@
 }
 
 .card__body{
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-flow: column;
 }

@@ -3,6 +3,8 @@
 import * as React from 'react';
 
 import hidden_config from './hidden_config.js';
+import { setEvent } from "./redux/reducers/appSlice.js";
+import { useDispatch } from "react-redux";
 
 export const DisplayMapComponent = () =>
 {
@@ -10,10 +12,11 @@ export const DisplayMapComponent = () =>
 	const mapRef = React.useRef(null);
 
 	const [events, setEvents] = React.useState([]);
-	const [map, setMap] = React.useState([])
-	const [H, setH] = React.useState([])
-	const [ui, setUI] = React.useState([])
+	const [map, setMap] = React.useState([]);
+	const [H, setH] = React.useState([]);
+	const [ui, setUI] = React.useState([]);
 
+	const dispatch = useDispatch();
 
 	/**
 	 * Create the map instance
@@ -94,13 +97,27 @@ export const DisplayMapComponent = () =>
 		{
 			const newMarker = new H.map.Marker({ lat: event.latitude, lng: event.longitude })
 			newMarker.setData(`<div><a href="${event.url}">${event.title}</a><br>`)
-			newMarker.addEventListener('tap', tapevent=>{
+			newMarker.addEventListener('tap', tapevent => {
 				const bubble = new H.ui.InfoBubble({lat:event.latitude, lng: event.longitude},
-				 {
-				  content: tapevent.target.getData()
-				})
+				 	{
+				  	content: tapevent.target.getData()
+					}
+				);
+
+				dispatch(setEvent(
+					{
+						title: event.title,
+						description: event.notes,
+						date: event.date,
+						url: event.url,
+						location: event.address,
+					}
+				));
+
+				console.log(event)
+
 				ui.addBubble(bubble);
-			  }, false)
+			}, false)
 			markerEvents.push(newMarker);
 			map.addObject(newMarker);
 		});

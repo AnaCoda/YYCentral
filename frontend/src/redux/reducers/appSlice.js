@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Desktop slice manages icons and buttons on the desktop
 export const appSlice = createSlice({
-   name: "desktop",
+   name: "app",
    initialState: {
       event: undefined,
    },
@@ -15,6 +14,6 @@ export const appSlice = createSlice({
 
 export const { setEvent } = appSlice.actions;
 
-export const selectButtons = (state) => state.desktop.buttons;
+export const selectEvent = (state) => state.app.event;
 
 export default appSlice.reducer;

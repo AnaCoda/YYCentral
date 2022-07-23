@@ -1,10 +1,10 @@
-import { appSlice } from "./reducers/appSlice";
+import appReducer from "./reducers/appSlice.js";
 import {configureStore} from "@reduxjs/toolkit";
 
 //Main redux state store
 export const store = configureStore({
    reducer:{
-      app: appSlice,
+      app: appReducer,
    },
    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
       serializableCheck: false
