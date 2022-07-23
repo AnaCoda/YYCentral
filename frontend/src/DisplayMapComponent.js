@@ -29,6 +29,13 @@ export class DisplayMapComponent extends React.Component {
         pixelRatio: window.devicePixelRatio || 1
       }
     );
+
+    // MapEvents enables the event system
+    // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+    const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+    // Create the default UI components to allow the user to interact with them
+    const ui = H.ui.UI.createDefault(map, defaultLayers);
  
     this.setState({ map });
   }
