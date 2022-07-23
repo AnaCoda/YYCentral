@@ -1,12 +1,4 @@
-$color-primary: #c81042;
-$color-neutral: #ffffff;
-
-$fs-sm: 0.875rem;
-$fs-md: 1rem;
-$fs-lg: 1.25rem;
-$fs-xl: 1.5rem;
-$fs-2xl: 2rem;
-$fs-3xl: 4rem;
+@use "../../variables";
 
 .landing-page {
     position: relative;
@@ -15,9 +7,9 @@ $fs-3xl: 4rem;
     justify-content: center;
 }
 
-h1 {
-    color: $color-primary;
-    font-size: $fs-3xl;
+.title {
+    color: variables.$color-primary;
+    font-size: variables.$fs-3xl;
     margin-bottom: 0.625rem;
 }
 
@@ -35,7 +27,7 @@ h1 {
     padding: 25px;
 }
 .sub-title {
-    font-size: $fs-2xl;
+    font-size: variables.$fs-2xl;
     margin-bottom: 25px;
     font-weight: 500;
     max-width: 25ch;
@@ -46,20 +38,24 @@ h1 {
     justify-content: center;
 }
 
-button {
+.btn {
     display: flex;
     align-items: center;
-    background-color: $color-primary;
+    background-color: variables.$color-primary;
     border: none;
-    color: $color-neutral;
+    color: variables.$color-neutral;
     padding: 10px 25px;
     border-radius: 0.25rem;
-    font-size: $fs-xl;
+    font-size: variables.$fs-xl;
     font-family: inherit;
     cursor: pointer;
+    transition: all 300ms ease-in-out;
 
     &:first-child {
         margin-right: 1rem;
+    }
+    &:hover {
+        background-color: variables.$color-primary-dark;
     }
 }
 
@@ -89,6 +85,16 @@ button {
     right: 0;
     bottom: 0;
     height: 100%;
+}
+
+.about-btn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 1400px) {
