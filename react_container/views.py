@@ -15,7 +15,7 @@ from rest_framework import serializers, response
 from rest_framework.views import APIView
 
 
-from react_container.models import Event
+from react_container.models import Event, Restaurant
 
 # Create your views here.
 
@@ -118,6 +118,12 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+
+class RestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = '__all__'
+
 class getEvents(APIView):
     """
     Retrieve payroll runs including line items for a company
@@ -125,6 +131,15 @@ class getEvents(APIView):
     def get(self, request):
         all_events = Event.objects.all()
         serializer = EventSerializer(all_events, many=True)
+        print(Event.objects.all())
+        print(serializer.data)
+
+        return response.Response(serializer.data)
+    
+class getRestaurants(APIView):
+    def get(self, request):
+        all_restaurants = Restaurant.objects.all()
+        serializer = EventSerializer(all_restaurants, many=True)
         print(Event.objects.all())
         print(serializer.data)
 
