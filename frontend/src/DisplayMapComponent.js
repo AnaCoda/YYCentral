@@ -13,8 +13,8 @@ export const DisplayMapComponent = () =>
 	const [map, setMap] = React.useState([])
 	const [H, setH] = React.useState([])
 	const [ui, setUI] = React.useState([])
-
-
+	const [eventIcon, setEventIcon] = React.useState([])
+	
 	/**
 	 * Create the map instance
 	 * While `useEffect` could also be used here, `useLayoutEffect` will render
@@ -30,6 +30,7 @@ export const DisplayMapComponent = () =>
 		// `mapRef.current` will be `undefined` when this hook first runs; edge case that
 		if (!mapRef.current) return;
 		const H = window.H;
+		setEventIcon(new H.map.Icon('<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1"  preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>event-solid</title><path class="clr-i-solid clr-i-solid-path-1" d="M10,10a1,1,0,0,0,1-1V3A1,1,0,0,0,9,3V9A1,1,0,0,0,10,10Z"></path><path class="clr-i-solid clr-i-solid-path-2" d="M26,10a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V9A1,1,0,0,0,26,10Z"></path><path class="clr-i-solid clr-i-solid-path-3" d="M32.25,6h-4V9a2.2,2.2,0,0,1-4.4,0V6H12.2V9A2.2,2.2,0,0,1,7.8,9V6h-4A1.78,1.78,0,0,0,2,7.81V30.19A1.78,1.78,0,0,0,3.75,32h28.5A1.78,1.78,0,0,0,34,30.19V7.81A1.78,1.78,0,0,0,32.25,6ZM25.94,16.58l-9.67,9.67L11,20.94A1.36,1.36,0,0,1,12.9,19l3.38,3.38L24,14.66a1.36,1.36,0,1,1,1.93,1.93Z"></path><rect x="0" y="0" width="36" height="36" fill-opacity="0"/></svg>'))
 		const platform = new H.service.Platform({
 			apikey: hidden_config.here_api_key
 		});
@@ -94,6 +95,9 @@ export const DisplayMapComponent = () =>
 		{
 			const newMarker = new H.map.Marker({ lat: event.latitude, lng: event.longitude })
 			newMarker.setData(`<div><a href="${event.url}">${event.title}</a><br>`)
+			if(eventIcon) {
+				newMarker.setIcon(eventIcon)
+			}
 			newMarker.addEventListener('tap', tapevent=>{
 				const bubble = new H.ui.InfoBubble({lat:event.latitude, lng: event.longitude},
 				 {
@@ -104,7 +108,7 @@ export const DisplayMapComponent = () =>
 			markerEvents.push(newMarker);
 			map.addObject(newMarker);
 		});
-	}, [events, H.map.Marker, map, ui]);
+	}, [events, H.map.Marker, map, ui, eventIcon]);
 
 	React.useEffect(() => {
 		
