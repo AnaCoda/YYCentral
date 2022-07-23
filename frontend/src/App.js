@@ -9,6 +9,7 @@ import {
 
 import SignIn from './LoginView';
 import ToDoView from './ToDoView';
+import { DisplayMapComponent } from './DisplayMapComponent';
 
 function App() {
   return (
@@ -63,7 +64,7 @@ function AppEntry() {
             Main Application
             -- Feel free to switch with your own Application
           */}
-          <ToDoView userdetails={user} />
+          <DisplayMapComponent/>
         </PrivateRoute>
       </Switch>
     </section>
