@@ -1,35 +1,46 @@
+import { Route, Switch, useLocation } from "react-router-dom";
+
 import Card from "../Card/Card";
 import { DisplayMapComponent } from "../../DisplayMapComponent";
 import Event from "../Event/Event";
+import Events from "../../views/Events";
 import NavBar from "../NavBar/NavBar";
-import React from 'react';
+import React from "react";
 import { selectEvent } from "../../redux/reducers/appSlice";
 import styles from "./Application.module.scss";
 import { useSelector } from "react-redux";
 
 export default function Application() {
-
     const event = useSelector(selectEvent);
+    const location = useLocation();
+
+    const appLocation = location.pathname.split("/");
 
     return (
         <div className={styles.application}>
-            <div className={styles.overlay}
+            <div className={styles.overlay} 
                 style={{
-                    // width takes up entire width of the screen if the map is displayed
-                    width: event ? "100%" : "0%",
+                    width: appLocation[2] ? "0%" : "100vw"
                 }}
             >
-                <NavBar/>
+                <NavBar />
                 <div className={styles.card__container}>
-                    {
-                        event &&
+                    {event && (
                         <Card title="Event">
-                            <Event event={event}/>
+                            <Event event={event} />
                         </Card>
-                    }
+                    )}
                 </div>
             </div>
-            <DisplayMapComponent/>
+            <Switch>
+                <Route path="/app/events" component={Events} />
+                <Route
+                    path="/app"
+                    exact
+                    component={DisplayMapComponent}
+                    index
+                />
+            </Switch>
         </div>
     );
 }
