@@ -4,8 +4,9 @@
 
 .app__wrapper{
    display: flex;
-   flex-flow: row nowrap;
-   align-items: center;
+   //flex-flow: row nowrap;
+   //align-items: center;
    height: 100vh;
-   overflow: hidden;
+   width: 100vh;
+   //overflow: hidden;
 }

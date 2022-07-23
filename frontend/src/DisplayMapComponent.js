@@ -45,6 +45,7 @@ export const DisplayMapComponent = () =>
 		const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(hMap));
 
 		const ui = H.ui.UI.createDefault(hMap, defaultLayers);
+		console.log('rendering')
 
 		// This will act as a cleanup to run once this hook runs again.
 		// This includes when the component un-mounts
@@ -84,7 +85,7 @@ export const DisplayMapComponent = () =>
 			markerEvents.push(newMarker);
 			map.addObject(newMarker);
 		});
-	}, [events]);
+	}, [events, H.map.Marker, map]);
 
 	React.useEffect(() => {
 		
