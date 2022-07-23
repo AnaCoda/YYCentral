@@ -16,7 +16,6 @@ from django.middleware.csrf import get_token
 
 @sensitive_post_parameters('password')
 @never_cache
-@ensure_csrf_cookie
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username', '').strip()
