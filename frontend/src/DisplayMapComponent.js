@@ -12,6 +12,7 @@ export const DisplayMapComponent = () =>
 	const [events, setEvents] = React.useState([]);
 	const [map, setMap] = React.useState([])
 	const [H, setH] = React.useState([])
+	const [ui, setUI] = React.useState([])
 
 
 	/**
@@ -47,6 +48,7 @@ export const DisplayMapComponent = () =>
 
 		const ui = H.ui.UI.createDefault(hMap, defaultLayers);
 		console.log('rendering')
+		setUI(ui)
 
 		// This will act as a cleanup to run once this hook runs again.
 		// This includes when the component un-mounts
@@ -83,10 +85,18 @@ export const DisplayMapComponent = () =>
 		events.forEach((event) =>
 		{
 			const newMarker = new H.map.Marker({ lat: event.latitude, lng: event.longitude })
+			newMarker.setData(`<div><a href="${event.url}">${event.title}</a>`)
+			newMarker.addEventListener('tap', tapevent=>{
+				const bubble = new H.ui.InfoBubble({lat:event.latitude, lng: event.longitude},
+				 {
+				  content: tapevent.target.getData()
+				})
+				ui.addBubble(bubble);
+			  }, false)
 			markerEvents.push(newMarker);
 			map.addObject(newMarker);
 		});
-	}, [events, H.map.Marker, map]);
+	}, [events, H.map.Marker, map, ui]);
 
 	React.useEffect(() => {
 		
