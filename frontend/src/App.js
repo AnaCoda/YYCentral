@@ -6,11 +6,11 @@ import {
     Switch,
 } from "react-router-dom";
 
+import LandingPage from "./views/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
 import SignIn from './LoginView';
 import ToDoView from './ToDoView';
 import styles from './App.module.scss';
-import LandingPage from "./views/LandingPage";
 
 function App() {
     return (
@@ -62,7 +62,7 @@ function AppEntry() {
                <SignIn updateUserInfo={updateUserInfo} />
             </Route>
             <Route path="/nav" component={NavBar} />
-            <PrivateRoute path="*">
+            <PrivateRoute path="/app*">
                <div className={styles.app__wrapper}>
                   <NavBar/>
                   <div>

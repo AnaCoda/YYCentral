@@ -1,8 +1,8 @@
+import { BiUser } from "react-icons/bi";
+import { IoMapSharp } from "react-icons/io5";
+import { ReactComponent as Logo } from "../../assets/logo.svg";
 import React from "react";
 import styles from "./LandingPage.module.scss";
-import { ReactComponent as Logo } from "../../assets/logo.svg";
-import { IoMapSharp } from "react-icons/io5";
-import { BiUser } from "react-icons/bi";
 
 export default function LandingPage() {
     return (
