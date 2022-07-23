@@ -7,6 +7,9 @@ export default function Event({event}) {
          <div className={styles.title}>
             {event.title}
          </div>
+         <div className={styles.details}>
+            .{}
+         </div>
          <div className={styles.description}>
             {event.description}
          </div>
