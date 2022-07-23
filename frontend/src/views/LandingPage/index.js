@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./LandingPage.module.scss";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
+import styles from "./LandingPage.module.scss";
 import MapIcon from "@mui/icons-material/Map";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useHistory } from "react-router-dom";

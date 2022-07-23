@@ -118,3 +118,7 @@ dmypy.json
 # VS Code
 .vscode
 *.code-workspace
+
+# api keys
+.env
+hidden_config.js

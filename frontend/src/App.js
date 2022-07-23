@@ -6,11 +6,11 @@ import {
     Switch,
 } from "react-router-dom";
 
-import NavBar from "./components/NavBar/NavBar";
-import SignIn from './LoginView';
-import ToDoView from './ToDoView';
-import styles from './App.module.scss';
 import LandingPage from "./views/LandingPage";
+import NavBar from "./components/NavBar/NavBar";
+import SignIn from './components/Login/Login';
+import { DisplayMapComponent } from './DisplayMapComponent';
+import styles from './App.module.scss';
 
 function App() {
     return (
@@ -62,12 +62,10 @@ function AppEntry() {
                <SignIn updateUserInfo={updateUserInfo} />
             </Route>
             <Route path="/nav" component={NavBar} />
-            <PrivateRoute path="*">
+            <PrivateRoute path="/app*">
                <div className={styles.app__wrapper}>
                   <NavBar/>
-                  <div>
-                     <img src="https://media.discordapp.net/attachments/997355637598072852/1000295440576684093/unknown.png" height="1000" alt=""/>
-                  </div>
+                  <DisplayMapComponent/>
                </div>
             </PrivateRoute>
             
