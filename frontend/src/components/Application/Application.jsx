@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 
 import Card from "../Card/Card";
 import { DisplayMapComponent } from "../../DisplayMapComponent";
@@ -12,10 +12,17 @@ import { useSelector } from "react-redux";
 
 export default function Application() {
     const event = useSelector(selectEvent);
+    const location = useLocation();
+
+    const appLocation = location.pathname.split("/");
 
     return (
         <div className={styles.application}>
-            <div className={styles.overlay}>
+            <div className={styles.overlay} 
+                style={{
+                    width: appLocation[2] ? "0%" : "100vw"
+                }}
+            >
                 <NavBar />
                 <div className={styles.card__container}>
                     {event && (
@@ -26,13 +33,13 @@ export default function Application() {
                 </div>
             </div>
             <Switch>
+                <Route path="/app/events" component={Events} />
                 <Route
                     path="/app"
                     exact
                     component={DisplayMapComponent}
                     index
                 />
-                <Route path="/app/events" component={Events} />
             </Switch>
         </div>
     );
