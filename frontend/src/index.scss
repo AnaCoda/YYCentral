@@ -10,3 +10,7 @@ $ff-primary: "Manrope", sans-serif;
 html {
     font-family: $ff-primary;
 }
+
+iframe {
+    pointer-events: none;
+}

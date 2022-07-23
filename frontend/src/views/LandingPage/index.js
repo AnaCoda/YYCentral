@@ -17,7 +17,7 @@ export default function LandingPage() {
                         The all-in-one web app to help you get around Calgary.
                     </p>
                     <div className={styles.btns}>
-                        <button>
+                        <button onClick={() => console.log("test")}>
                             <IoMapSharp className={styles["btn-icon"]} />
                             Map
                         </button>
