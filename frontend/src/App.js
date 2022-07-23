@@ -6,8 +6,11 @@ import {
     Switch,
 } from "react-router-dom";
 
+
 import About from "./views/About";
-import { DisplayMapComponent } from "./DisplayMapComponent";
+import Application from "./components/Application/Application";
+import { DisplayMapComponent } from './DisplayMapComponent';
+
 import LandingPage from "./views/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
 import SignIn from "./components/Login/Login";
@@ -54,25 +57,21 @@ function AppEntry() {
             />
         );
     }
-
-    return (
-        <section style={{ height: "100vh" }}>
-            <Switch>
-                <Route path="/" component={LandingPage} exact />
-                <Route path="/about" component={About} />
-                <Route path="/login">
-                    <SignIn updateUserInfo={updateUserInfo} />
-                </Route>
-                <Route path="/nav" component={NavBar} />
-                <PrivateRoute path="/app*">
-                    <div className={styles.app__wrapper}>
-                        <NavBar />
-                        <DisplayMapComponent />
-                    </div>
-                </PrivateRoute>
-            </Switch>
-        </section>
-    );
+   return (
+      <section style={{height: "100vh"}}>
+         <Switch>
+            <Route path="/" component={LandingPage} exact />
+            <Route path="/about" component={About} />
+            <Route path="/login">
+               <SignIn updateUserInfo={updateUserInfo} />
+            </Route>
+            <Route path="/nav" component={NavBar} />
+            <PrivateRoute path="/app*">
+               <Application/>
+            </PrivateRoute>
+         </Switch>
+      </section>
+   );
 }
 
 export default App;
