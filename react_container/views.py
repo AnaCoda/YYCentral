@@ -118,6 +118,12 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+
+class RestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = '__all__'
+
 class getEvents(APIView):
     """
     Retrieve payroll runs including line items for a company
@@ -129,3 +135,6 @@ class getEvents(APIView):
         print(serializer.data)
 
         return response.Response(serializer.data)
+    
+class getRestaurants(APIView):
+    
