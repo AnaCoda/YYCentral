@@ -6,6 +6,7 @@ import {
     Switch,
 } from "react-router-dom";
 
+import Application from "./components/Application/Application";
 import { DisplayMapComponent } from './DisplayMapComponent';
 import LandingPage from "./views/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
@@ -63,10 +64,7 @@ function AppEntry() {
             </Route>
             <Route path="/nav" component={NavBar} />
             <PrivateRoute path="/app*">
-            <div className={styles.app__wrapper}>
-                <NavBar/>
-               <DisplayMapComponent/>
-            </div>
+               <Application/>
             </PrivateRoute>
          </Switch>
       </section>
