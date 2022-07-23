@@ -13,7 +13,12 @@ export default function Application() {
 
     return (
         <div className={styles.application}>
-            <div className={styles.overlay}>
+            <div className={styles.overlay}
+                style={{
+                    // width takes up entire width of the screen if the map is displayed
+                    width: event ? "100%" : "0%",
+                }}
+            >
                 <NavBar/>
                 <div className={styles.card__container}>
                     {
