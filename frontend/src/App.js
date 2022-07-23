@@ -1,6 +1,4 @@
-import "./App.css";
-
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
     Redirect,
     Route,
@@ -8,8 +6,10 @@ import {
     Switch,
 } from "react-router-dom";
 
-import SignIn from "./LoginView";
-import ToDoView from "./ToDoView";
+import NavBar from "./components/NavBar/NavBar";
+import SignIn from './LoginView';
+import ToDoView from './ToDoView';
+import styles from './App.module.scss';
 import LandingPage from "./views/LandingPage";
 
 function App() {
@@ -54,22 +54,26 @@ function AppEntry() {
         );
     }
 
-    return (
-        <section>
-            <Switch>
-                <Route path="/" component={LandingPage} exact />
-                <Route path="/login">
-                    {/* 
-               Sign In control - Feel free to customize
-                */}
-                    <SignIn updateUserInfo={updateUserInfo} />
-                </Route>
-                <PrivateRoute path="*">
-                    <ToDoView userdetails={user} />
-                </PrivateRoute>
-            </Switch>
-        </section>
-    );
+   return (
+      <section style={{height: "100vh"}}>
+         <Switch>
+            <Route path="/" component={LandingPage} exact />
+            <Route path="/login">
+               <SignIn updateUserInfo={updateUserInfo} />
+            </Route>
+            <Route path="/nav" component={NavBar} />
+            <PrivateRoute path="*">
+               <div className={styles.app__wrapper}>
+                  <NavBar/>
+                  <div>
+                     <img src="https://media.discordapp.net/attachments/997355637598072852/1000295440576684093/unknown.png" height="1000" alt=""/>
+                  </div>
+               </div>
+            </PrivateRoute>
+            
+         </Switch>
+      </section>
+   );
 }
 
 export default App;
