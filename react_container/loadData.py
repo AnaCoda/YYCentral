@@ -35,8 +35,9 @@ class DataLoader():
         import geocoder
 
         result_instances = []
-        with open('react_container/files/CalgaryRestaurantsLong.csv') as csv_file:
+        with open('react_container/files/CalgaryRestaurantsLong2.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
+            next(csv_reader)
             for row in csv_reader:
                 address = row[1]
                 try:
@@ -46,4 +47,5 @@ class DataLoader():
                 except:
                     pass
         Restaurant.objects.all().delete()
+        print(result_instances[0])
         Restaurant.objects.bulk_create(result_instances)

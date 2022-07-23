@@ -73,7 +73,7 @@ export const DisplayMapComponent = () =>
 	// Fetch data --> 1.)
 	React.useEffect(() =>
 	{
-		// Fetch the Payroll Data related to the logged in User
+		// Fetch the event data from backend
 		fetch(`http://127.0.0.1:8000/api/getEvents/`, {
 			method: 'GET',
 			headers: {
@@ -87,6 +87,19 @@ export const DisplayMapComponent = () =>
 				setEvents(data)
 				console.log(data)
 			});
+		// Fetch restaurant data from backend
+		// fetch(`http://127.0.0.1:8000/api/getRestaurants/`, {
+		// 	method: 'GET',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 		Authorization: `Token ${localStorage.getItem('token')}`
+		// 	},
+		// })
+		// 	.then(res => res.json())
+		// 	.then(data =>
+		// 	{
+		// 		console.log(data)
+		// 	});
 	}, []);
 
 	// Add markers to map

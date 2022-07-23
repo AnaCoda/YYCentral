@@ -4,4 +4,4 @@ class ReactContainerConfig(AppConfig):
     def ready(self):
         from .loadData import DataLoader
         DataLoader().Load_Events_Data()
-        DataLoader().Load_Restaurants_Data()
+        #DataLoader().Load_Restaurants_Data()
