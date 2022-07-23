@@ -56,6 +56,7 @@ button {
     border-radius: 0.25rem;
     font-size: $fs-xl;
     font-family: inherit;
+    cursor: pointer;
 
     &:first-child {
         margin-right: 1rem;
