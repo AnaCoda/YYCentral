@@ -8,7 +8,7 @@ import {
    Switch
 } from "react-router-dom";
 
-import Navbar from "./components/NavBar/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 import SignIn from './LoginView';
 import ToDoView from './ToDoView';
 
@@ -64,7 +64,7 @@ function AppEntry() {
                
                <ToDoView userdetails={user} />
             </PrivateRoute> */}
-            <Route path="/nav" component={Navbar} />
+            <Route path="/nav" component={NavBar} />
          </Switch>
       </section>
    );
