@@ -1,0 +1,55 @@
+$color-primary: #c81042;
+$color-neutral: #ffffff;
+
+$fs-sm: 0.875rem;
+$fs-md: 1rem;
+$fs-lg: 1.25rem;
+$fs-xl: 1.5rem;
+$fs-2xl: 2rem;
+$fs-3xl: 4rem;
+
+h1 {
+    color: $color-primary;
+    font-size: $fs-3xl;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 100px;
+    margin-right: 1.5rem;
+}
+
+.header {
+    display: flex;
+}
+.sub-title {
+    font-size: $fs-xl;
+    margin-bottom: 1rem;
+}
+
+.header__content {
+}
+
+.btns {
+    display: flex;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    background-color: $color-primary;
+    border: none;
+    color: $color-neutral;
+    padding: 0.75em 1em;
+    border-radius: 0.25rem;
+    font-size: $fs-lg;
+
+    &:first-child {
+        margin-right: 1rem;
+    }
+}
+
+.btn-icon {
+    margin-right: 0.5rem;
+    font-size: $fs-2xl;
+}
