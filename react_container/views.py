@@ -11,6 +11,11 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie, csrf_protect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.middleware.csrf import get_token
+from rest_framework import serializers, response
+from rest_framework.views import APIView
+
+
+from react_container.models import Event
 
 # Create your views here.
 
@@ -107,3 +112,20 @@ class CSRFTemplateView(TemplateView):
 catchall_prod = CSRFTemplateView.as_view(template_name='index.html')
 
 catchall = catchall_dev if settings.DEBUG else catchall_prod
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = '__all__'
+class getEvents(APIView):
+    """
+    Retrieve payroll runs including line items for a company
+    """
+    def get(self, request):
+        all_events = Event.objects.all()
+        serializer = EventSerializer(all_events, many=True)
+        print(Event.objects.all())
+        print(serializer.data)
+
+        return response.Response(serializer.data)

@@ -6,6 +6,7 @@ import {
     Switch,
 } from "react-router-dom";
 
+import { DisplayMapComponent } from './DisplayMapComponent';
 import LandingPage from "./views/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
 import SignIn from './components/Login/Login';
@@ -64,9 +65,7 @@ function AppEntry() {
             <PrivateRoute path="/app*">
                <div className={styles.app__wrapper}>
                   <NavBar/>
-                  <div>
-                     <img src="https://media.discordapp.net/attachments/997355637598072852/1000295440576684093/unknown.png" height="1000" alt=""/>
-                  </div>
+                  <DisplayMapComponent/>
                </div>
             </PrivateRoute>
             
