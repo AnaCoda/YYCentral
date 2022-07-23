@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
     Redirect,
     Route,
@@ -6,12 +6,15 @@ import {
     Switch,
 } from "react-router-dom";
 
+
+import About from "./views/About";
 import Application from "./components/Application/Application";
 import { DisplayMapComponent } from './DisplayMapComponent';
+
 import LandingPage from "./views/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
-import SignIn from './components/Login/Login';
-import styles from './App.module.scss';
+import SignIn from "./components/Login/Login";
+import styles from "./App.module.scss";
 
 function App() {
     return (
@@ -54,11 +57,11 @@ function AppEntry() {
             />
         );
     }
-
    return (
       <section style={{height: "100vh"}}>
          <Switch>
             <Route path="/" component={LandingPage} exact />
+            <Route path="/about" component={About} />
             <Route path="/login">
                <SignIn updateUserInfo={updateUserInfo} />
             </Route>
