@@ -7,6 +7,7 @@ class DataLoader():
         from .models import Event
         import pandas as pd
         from sodapy import Socrata
+        import json
         client = Socrata("data.calgary.ca", None)
         results = client.get("n625-9k5x", limit=2000)
         results_df = pd.DataFrame.from_records(results)
@@ -20,7 +21,7 @@ class DataLoader():
             address=result['address'],
             event_type=result['event_type'],
             url=result['more_info_url'],
-            all_dates=result['all_dates'],
+            all_dates=json.dumps(result['all_dates'].split('<br>')),
             latitude=float(result['latitude']),
             longitude=float(result['longitude'])
         ) for result in results_records]
