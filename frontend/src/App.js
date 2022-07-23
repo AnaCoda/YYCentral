@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
     Redirect,
     Route,
@@ -6,11 +6,12 @@ import {
     Switch,
 } from "react-router-dom";
 
-import { DisplayMapComponent } from './DisplayMapComponent';
+import About from "./views/About";
+import { DisplayMapComponent } from "./DisplayMapComponent";
 import LandingPage from "./views/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
-import SignIn from './components/Login/Login';
-import styles from './App.module.scss';
+import SignIn from "./components/Login/Login";
+import styles from "./App.module.scss";
 
 function App() {
     return (
@@ -54,24 +55,24 @@ function AppEntry() {
         );
     }
 
-   return (
-      <section style={{height: "100vh"}}>
-         <Switch>
-            <Route path="/" component={LandingPage} exact />
-            <Route path="/login">
-               <SignIn updateUserInfo={updateUserInfo} />
-            </Route>
-            <Route path="/nav" component={NavBar} />
-            <PrivateRoute path="/app*">
-               <div className={styles.app__wrapper}>
-                  <NavBar/>
-                  <DisplayMapComponent/>
-               </div>
-            </PrivateRoute>
-            
-         </Switch>
-      </section>
-   );
+    return (
+        <section style={{ height: "100vh" }}>
+            <Switch>
+                <Route path="/" component={LandingPage} exact />
+                <Route path="/about" component={About} />
+                <Route path="/login">
+                    <SignIn updateUserInfo={updateUserInfo} />
+                </Route>
+                <Route path="/nav" component={NavBar} />
+                <PrivateRoute path="/app*">
+                    <div className={styles.app__wrapper}>
+                        <NavBar />
+                        <DisplayMapComponent />
+                    </div>
+                </PrivateRoute>
+            </Switch>
+        </section>
+    );
 }
 
 export default App;
