@@ -8,30 +8,41 @@ $fs-xl: 1.5rem;
 $fs-2xl: 2rem;
 $fs-3xl: 4rem;
 
+.landing-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+}
+
 h1 {
     color: $color-primary;
     font-size: $fs-3xl;
-    margin-bottom: 1rem;
+    margin-bottom: 0.625rem;
 }
 
 .logo {
-    width: 100px;
-    margin-right: 1.5rem;
+    width: 117px;
+    margin-right: 25px;
 }
 
 .header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: auto 0 auto 53px;
+    padding: 25px;
 }
 .sub-title {
-    font-size: $fs-xl;
-    margin-bottom: 1rem;
-}
-
-.header__content {
+    font-size: $fs-2xl;
+    margin-bottom: 25px;
+    font-weight: 500;
+    max-width: 25ch;
 }
 
 .btns {
     display: flex;
+    justify-content: center;
 }
 
 button {
@@ -40,9 +51,10 @@ button {
     background-color: $color-primary;
     border: none;
     color: $color-neutral;
-    padding: 0.75em 1em;
+    padding: 10px 25px;
     border-radius: 0.25rem;
-    font-size: $fs-lg;
+    font-size: $fs-xl;
+    font-family: inherit;
 
     &:first-child {
         margin-right: 1rem;
@@ -50,6 +62,29 @@ button {
 }
 
 .btn-icon {
-    margin-right: 0.5rem;
-    font-size: $fs-2xl;
+    margin-right: 0.625rem;
+    font-size: 50px;
+}
+
+.map-img {
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+    .header {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: start;
+    }
+    .map-img {
+        display: block;
+    }
+    .btns {
+        justify-content: flex-start;
+    }
 }

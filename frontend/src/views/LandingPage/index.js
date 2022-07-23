@@ -2,11 +2,15 @@ import React from "react";
 import styles from "./LandingPage.module.scss";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { IoMapSharp } from "react-icons/io5";
-import { BiUser } from "react-icons/bi";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import { useHistory } from "react-router-dom";
+import mapImage from "../../assets/mapImage.png";
 
 export default function LandingPage() {
+    let history = useHistory();
+
     return (
-        <div>
+        <div className={styles["landing-page"]}>
             <div className={styles.header}>
                 <div className={styles.logo}>
                     <Logo />
@@ -14,20 +18,25 @@ export default function LandingPage() {
                 <div className={styles.header__content}>
                     <h1>YYCentral</h1>
                     <p className={styles["sub-title"]}>
-                        The all-in-one web app to help you get around Calgary.
+                        The all-in-one web app to help you get around Calgary
                     </p>
                     <div className={styles.btns}>
-                        <button>
+                        <button onClick={() => history.push("/nav")}>
                             <IoMapSharp className={styles["btn-icon"]} />
                             Map
                         </button>
-                        <button>
-                            <BiUser className={styles["btn-icon"]} />
+                        <button onClick={() => history.push("/login")}>
+                            <PersonOutlineIcon
+                                sx={{ fontSize: 50 }}
+                                className={styles["btn-icon"]}
+                            />
                             Login/Signup
                         </button>
                     </div>
                 </div>
             </div>
+
+            <img src={mapImage} alt="map" className={styles["map-img"]} />
         </div>
     );
 }
