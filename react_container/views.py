@@ -121,7 +121,7 @@ class EventSerializer(serializers.ModelSerializer):
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Event
+        model = Restaurant
         fields = '__all__'
 
 class getEvents(APIView):
@@ -137,6 +137,5 @@ class getEvents(APIView):
 class getRestaurants(APIView):
     def get(self, request):
         all_restaurants = Restaurant.objects.all()
-        serializer = EventSerializer(all_restaurants, many=True)
-
+        serializer = RestaurantSerializer(all_restaurants, many=True)
         return response.Response(serializer.data)

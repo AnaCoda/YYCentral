@@ -40,13 +40,18 @@ class DataLoader():
             csv_reader = csv.reader(csv_file, delimiter=',')
             next(csv_reader)
             for row in csv_reader:
-                address = row[1]
-                try:
-                    if address is not None:
-                        newRestaurant = Restaurant(str(row[0]), address, str(row[2]), row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10])
-                        result_instances.append(newRestaurant)
-                except:
-                    pass
+                result_instances.append(Restaurant(name=row[0], 
+                                                   address=row[1], 
+                                                   phone=row[2], 
+                                                   website = row[3], 
+                                                   rating = row[4], 
+                                                   pricing = row[5],
+                                                   description = row[6], 
+                                                   tags = row[7], 
+                                                   image_urls = row[8], 
+                                                   latitude = row[9], 
+                                                   longitude = row[10]))
+                
         Restaurant.objects.all().delete()
         print(result_instances[0])
         Restaurant.objects.bulk_create(result_instances)
