@@ -1,58 +1,63 @@
 import React, { useState } from 'react';
 import {
-   Redirect,
-   Route,
-   BrowserRouter as Router,
-   Switch
+    Redirect,
+    Route,
+    BrowserRouter as Router,
+    Switch,
 } from "react-router-dom";
 
 import NavBar from "./components/NavBar/NavBar";
 import SignIn from './LoginView';
 import ToDoView from './ToDoView';
 import styles from './App.module.scss';
+import LandingPage from "./views/LandingPage";
 
 function App() {
-   return (
-      <Router>
-         <AppEntry />
-      </Router>
-   )
+    return (
+        <Router>
+            <AppEntry />
+        </Router>
+    );
 }
 
 function AppEntry() {
-   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user') || '{}'));
+    const [user, setUser] = useState(
+        JSON.parse(sessionStorage.getItem("user") || "{}")
+    );
 
-   function updateUserInfo(userDetail) {
-      setUser(userDetail);
-      sessionStorage.setItem("user", JSON.stringify(userDetail));
-      sessionStorage.setItem('loggedin', true);
-   }
+    function updateUserInfo(userDetail) {
+        setUser(userDetail);
+        sessionStorage.setItem("user", JSON.stringify(userDetail));
+        sessionStorage.setItem("loggedin", true);
+    }
 
-   // A wrapper for <Route> that redirects to the login
-   // screen if you're not yet authenticated.
-   function PrivateRoute({ children, ...rest }) {
-      return (
-         <Route
-            {...rest}
-            render={({ location }) =>
-               (sessionStorage.getItem('loggedin') != null && sessionStorage.getItem('loggedin')) ? (
-                  children
-               ) : (
-                     <Redirect
-                        to={{
-                           pathname: "/login",
-                           state: { from: location }
-                        }}
-                     />
-                  )
-            }
-         />
-      );
-   }
+    // A wrapper for <Route> that redirects to the login
+    // screen if you're not yet authenticated.
+    function PrivateRoute({ children, ...rest }) {
+        return (
+            <Route
+                {...rest}
+                render={({ location }) =>
+                    sessionStorage.getItem("loggedin") != null &&
+                    sessionStorage.getItem("loggedin") ? (
+                        children
+                    ) : (
+                        <Redirect
+                            to={{
+                                pathname: "/login",
+                                state: { from: location },
+                            }}
+                        />
+                    )
+                }
+            />
+        );
+    }
 
    return (
       <section style={{height: "100vh"}}>
          <Switch>
+            <Route path="/" component={LandingPage} exact />
             <Route path="/login">
                <SignIn updateUserInfo={updateUserInfo} />
             </Route>
