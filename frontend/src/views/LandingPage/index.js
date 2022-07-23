@@ -22,7 +22,7 @@ export default function LandingPage() {
                         The all-in-one web app to help you get around Calgary
                     </p>
                     <div className={styles.btns}>
-                        <button onClick={() => history.push("/nav")}>
+                        <button onClick={() => history.push("/app")}>
                             <MapIcon
                                 sx={{ fontSize: 50 }}
                                 className={styles["btn-icon"]}

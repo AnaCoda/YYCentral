@@ -11,7 +11,7 @@ export default function NavBar() {
       <div className={styles.navbar__wrapper}>
          <div className={styles.navbar}>
             <div className={styles.navbar__item}>
-               <IconButton className={styles.icon}>
+               <IconButton className={styles.icon} onClick={() => console.log("test")}>
                   <QuestionAnswerIcon/>
                </IconButton>
                <IconButton className={styles.icon}>
