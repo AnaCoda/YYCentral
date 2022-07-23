@@ -12,6 +12,7 @@ $fs-3xl: 4rem;
     position: relative;
     min-height: 100vh;
     display: flex;
+    justify-content: center;
 }
 
 h1 {
@@ -66,7 +67,7 @@ button {
     font-size: 50px;
 }
 
-.map-img {
+.header-graphic {
     position: absolute;
     display: none;
     top: 0;
@@ -74,17 +75,37 @@ button {
     bottom: 0;
     height: 100%;
 }
+.pink-img {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
 
-@media screen and (min-width: 1000px) {
+.map-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+@media screen and (min-width: 1400px) {
+    .landing-page {
+        justify-content: left;
+    }
     .header {
         flex-direction: row;
         align-items: flex-start;
         text-align: start;
     }
-    .map-img {
+    .header-graphic {
         display: block;
     }
     .btns {
         justify-content: flex-start;
+    }
+    .pink-img {
+        transform: translateX(-100px);
     }
 }

@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./LandingPage.module.scss";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
-import { IoMapSharp } from "react-icons/io5";
+import MapIcon from "@mui/icons-material/Map";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useHistory } from "react-router-dom";
 import mapImage from "../../assets/mapImage.png";
+import pinkGraphic from "../../assets/pink_header.svg";
 
 export default function LandingPage() {
     let history = useHistory();
@@ -22,7 +23,10 @@ export default function LandingPage() {
                     </p>
                     <div className={styles.btns}>
                         <button onClick={() => history.push("/nav")}>
-                            <IoMapSharp className={styles["btn-icon"]} />
+                            <MapIcon
+                                sx={{ fontSize: 50 }}
+                                className={styles["btn-icon"]}
+                            />
                             Map
                         </button>
                         <button onClick={() => history.push("/login")}>
@@ -35,8 +39,14 @@ export default function LandingPage() {
                     </div>
                 </div>
             </div>
-
-            <img src={mapImage} alt="map" className={styles["map-img"]} />
+            <div className={styles["header-graphic"]}>
+                <img
+                    src={pinkGraphic}
+                    className={styles["pink-img"]}
+                    alt="pink design graphic"
+                />
+                <img src={mapImage} className={styles["map-img"]} alt="map" />
+            </div>
         </div>
     );
 }
