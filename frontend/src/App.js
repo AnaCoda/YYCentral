@@ -63,10 +63,10 @@ function AppEntry() {
             </Route>
             <Route path="/nav" component={NavBar} />
             <PrivateRoute path="/app*">
-               <div className={styles.app__wrapper}>
-                  <NavBar/>
-                  <DisplayMapComponent/>
-               </div>
+            <div className={styles.app__wrapper}>
+                <NavBar/>
+               <DisplayMapComponent/>
+            </div>
             </PrivateRoute>
          </Switch>
       </section>
