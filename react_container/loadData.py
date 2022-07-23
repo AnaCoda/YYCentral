@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+import datetime
 
 from react_container.models import Restaurant
 
@@ -14,7 +15,6 @@ class DataLoader():
         results_df = results_df[['address', 'notes', 'title', 'event_type', 'more_info_url', 'all_dates', 'longitude', 'latitude', 'host_organization']]
         results_df = results_df[results_df.host_organization != "City of Calgary"]
         results_records = results_df.to_dict('records')
-
         result_instances = [Event(
             title=result['title'],
             notes=result['notes'],
@@ -22,9 +22,11 @@ class DataLoader():
             event_type=result['event_type'],
             url=result['more_info_url'],
             all_dates=json.dumps(result['all_dates'].split('<br>')),
+            first_date= datetime.datetime(),
             latitude=float(result['latitude']),
             longitude=float(result['longitude'])
         ) for result in results_records]
+        print(results_records[0]['all_dates'])
         
         Event.objects.all().delete()
         Event.objects.bulk_create(result_instances)
