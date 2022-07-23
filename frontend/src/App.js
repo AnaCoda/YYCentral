@@ -6,10 +6,10 @@ import {
     Switch,
 } from "react-router-dom";
 
+import { DisplayMapComponent } from './DisplayMapComponent';
 import LandingPage from "./views/LandingPage";
 import NavBar from "./components/NavBar/NavBar";
 import SignIn from './components/Login/Login';
-import { DisplayMapComponent } from './DisplayMapComponent';
 import styles from './App.module.scss';
 
 function App() {

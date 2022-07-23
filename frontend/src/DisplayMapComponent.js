@@ -1,7 +1,8 @@
 // src/DisplayMapFC.js
 
 import * as React from 'react';
-import hidden_config from './hidden_config';
+
+import hidden_config from './hidden_config.js';
 
 export const DisplayMapComponent = () =>
 {
