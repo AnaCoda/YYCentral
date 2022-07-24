@@ -15,6 +15,8 @@ export const DisplayMapComponent = () => {
     // Create a reference to the HTML element we want to put the map on
     const mapRef = React.useRef(null);
 
+    const [restaurants, setRestaurants] = React.useState([]);
+
     const [events, setEvents] = React.useState([]);
     const [map, setMap] = React.useState([]);
     const [H, setH] = React.useState([]);
@@ -24,6 +26,7 @@ export const DisplayMapComponent = () => {
 
     const dispatch = useDispatch();
     const { redirectedEvent } = useSelector((state) => state.app);
+
     /**
      * Create the map instance
      * While `useEffect` could also be used here, `useLayoutEffect` will render
@@ -107,20 +110,30 @@ export const DisplayMapComponent = () => {
                     setEvents(data);
                     console.log(data);
                 });
+            fetch(`http://127.0.0.1:8000/api/getRestaurants/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Token ${localStorage.getItem("token")}`,
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setRestaurants(data);
+                    console.log(data);
+                });
+            fetch(`http://127.0.0.1:8000/api/popularEvents/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Token ${localStorage.getItem("token")}`,
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                });
         }
-        // Fetch restaurant data from backend
-        // fetch(`http://127.0.0.1:8000/api/getRestaurants/`, {
-        // 	method: 'GET',
-        // 	headers: {
-        // 		'Content-Type': 'application/json',
-        // 		Authorization: `Token ${localStorage.getItem('token')}`
-        // 	},
-        // })
-        // 	.then(res => res.json())
-        // 	.then(data =>
-        // 	{
-        // 		console.log(data)
-        // 	});
     }, []);
 
     // Add markers to map
@@ -156,14 +169,37 @@ export const DisplayMapComponent = () => {
             markerEvents.push(newMarker);
             map.addObject(newMarker);
         });
-    }, [events, H.map.Marker, map, ui, eventIcon]);
-
-    React.useEffect(() => {
-        // Get user's location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(setUserLocation);
-        }
-    }, [map]);
+        restaurants.forEach((restaurant) => {
+            const newMarker = new H.map.Marker({
+                lat: parseFloat(restaurant.latitude),
+                lng: parseFloat(restaurant.longitude),
+            });
+            newMarker.setData(
+                `<div><a href="${restaurant.website}">${restaurant.name}</a><br>`
+            );
+            if (restaurantIcon) {
+                newMarker.setIcon(restaurantIcon);
+            }
+            newMarker.addEventListener(
+                "tap",
+                (tapevent) => {
+                    const bubble = new H.ui.InfoBubble(
+                        {
+                            lat: parseFloat(restaurant.latitude),
+                            lng: parseFloat(restaurant.longitude),
+                        },
+                        {
+                            content: tapevent.target.getData(),
+                        }
+                    );
+                    ui.addBubble(bubble);
+                },
+                false
+            );
+            markerEvents.push(newMarker);
+            map.addObject(newMarker);
+        });
+    }, [events, restaurants, H.map.Marker, map, ui, eventIcon, restaurantIcon]);
 
     return <div className="map" ref={mapRef} style={{ height: "100vh" }} />;
 };

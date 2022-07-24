@@ -7,11 +7,11 @@ export default function Card({title, children}) {
          <div 
             className={styles.card} 
          >
-            <div className={styles.card__header}>
+            {/* <div className={styles.card__header}>
                <h1 className={styles.card__header__title}>
                   {title}
                </h1>
-            </div>
+            </div> */}
             <div className={styles.card__body}>
                {children}
             </div>
