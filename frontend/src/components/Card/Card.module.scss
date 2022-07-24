@@ -25,11 +25,19 @@
     flex-direction: column;
 }
 
-.card__header__title{
+.header{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    background-color: global.$color-primary;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
-    color: global.$color-primary;
-    font-size: 2rem;
-    padding: 0.5rem;
+    h1{
+        font-size: 2rem;
+        color: global.$color-neutral;
+    }
 }
 
 .card__body{

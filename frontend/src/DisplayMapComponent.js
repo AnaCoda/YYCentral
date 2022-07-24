@@ -4,8 +4,9 @@ import * as React from "react";
 
 import { EventIcon, RestaurantIcon } from "./assets/mapIcons";
 import appSlice, {
-    removeRedirectedEvent,
-    setEvent,
+	PopupType,
+	removeRedirectedEvent,
+	setPopup,
 } from "./redux/reducers/appSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -34,7 +35,7 @@ export const DisplayMapComponent = () => {
      */
     const setUserLocation = (position) => {
         if (!(map.length > 0)) return;
-        console.log(map);
+      //   console.log(map);
         setMap({
             ...map,
             center: {
@@ -95,7 +96,7 @@ export const DisplayMapComponent = () => {
         if (redirectedEvent) {
             setEvents([redirectedEvent]);
             dispatch(removeRedirectedEvent());
-            dispatch(setEvent(redirectedEvent));
+            dispatch(setPopup(redirectedEvent));
         } else {
             // Fetch the event data from backend
             fetch(`http://127.0.0.1:8000/api/getEvents/`, {
@@ -108,7 +109,7 @@ export const DisplayMapComponent = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     setEvents(data);
-                    console.log(data);
+                  //   console.log(data);
                 });
             fetch(`http://127.0.0.1:8000/api/getRestaurants/`, {
                 method: "GET",
@@ -120,7 +121,7 @@ export const DisplayMapComponent = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     setRestaurants(data);
-                    console.log(data);
+                  //   console.log(data);
                 });
             fetch(`http://127.0.0.1:8000/api/popularEvents/`, {
                 method: "GET",
@@ -131,7 +132,7 @@ export const DisplayMapComponent = () => {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
+                  //   console.log(data);
                 });
         }
     }, []);
@@ -152,19 +153,21 @@ export const DisplayMapComponent = () => {
                 newMarker.setIcon(eventIcon);
             }
             newMarker.addEventListener(
-                "tap",
-                (tapevent) => {
-                    dispatch(
-                        setEvent({
-                            title: event.title,
-                            description: event.notes,
-                            date: event.date,
-                            url: event.url,
-                            location: event.address,
-                        })
-                    );
-                },
-                false
+					"tap",
+					(tapevent) => {
+						dispatch(
+							setPopup({
+								title: event.title,
+								description: event.notes,
+								date: event.date,
+								url: event.url,
+								location: event.address,
+								phone: event.phone,
+								type: PopupType.event,
+							})
+						);
+					},
+					false
             );
             markerEvents.push(newMarker);
             map.addObject(newMarker);
@@ -183,16 +186,18 @@ export const DisplayMapComponent = () => {
             newMarker.addEventListener(
                 "tap",
                 (tapevent) => {
-                    const bubble = new H.ui.InfoBubble(
-                        {
-                            lat: parseFloat(restaurant.latitude),
-                            lng: parseFloat(restaurant.longitude),
-                        },
-                        {
-                            content: tapevent.target.getData(),
-                        }
-                    );
-                    ui.addBubble(bubble);
+						console.log(restaurant);
+						dispatch(
+							setPopup({
+								 title: restaurant.name,
+								 description: restaurant.description,
+								 date: restaurant.date,
+								 url: restaurant.url,
+								 location: restaurant.address,
+								 phone: restaurant.phone,
+								 type: PopupType.restaurant,
+							})
+					  );
                 },
                 false
             );

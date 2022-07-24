@@ -6,7 +6,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import LogoutIcon from "@mui/icons-material/Logout";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import React from "react";
-import { setEvent } from "../../redux/reducers/appSlice";
+import { setPopup } from "../../redux/reducers/appSlice";
 import styles from "./NavBar.module.scss";
 import { useDispatch } from "react-redux";
 
@@ -19,7 +19,7 @@ export default function NavBar() {
         
         // Reset all redux states
         dispatch(
-            setEvent(undefined)
+            setPopup(undefined)
         );
     }
 
@@ -33,9 +33,7 @@ export default function NavBar() {
                         <QuestionAnswerIcon />
                     </IconButton>
                     <IconButton className={styles.icon} onClick={() => push("/app/events")}>
-                        <Link to="/app/events">
-                            <CalendarTodayIcon />
-                        </Link>
+                        <CalendarTodayIcon />
                     </IconButton>
                     <IconButton className={styles.icon} onClick={() => push("/app")}>
                         <LocationOnIcon />

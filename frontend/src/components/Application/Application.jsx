@@ -1,20 +1,24 @@
+import Event, { Restaurant } from "../Event/Event";
+import React, { useEffect } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 
 import Card from "../Card/Card";
 import { DisplayMapComponent } from "../../DisplayMapComponent";
-import Event from "../Event/Event";
 import Events from "../../views/Events";
 import NavBar from "../NavBar/NavBar";
-import React from "react";
-import { selectEvent } from "../../redux/reducers/appSlice";
+import { selectPopup } from "../../redux/reducers/appSlice";
 import styles from "./Application.module.scss";
 import { useSelector } from "react-redux";
 
 export default function Application() {
-    const event = useSelector(selectEvent);
+    const popup = useSelector(selectPopup);
     const location = useLocation();
-
     const appLocation = location.pathname.split("/");
+
+    const componentTypes = {
+        event: <Event event={popup}/>,
+        restaurant: <Restaurant restaurant={popup}/>,
+    }
 
     return (
         <div className={styles.application}>
@@ -25,9 +29,9 @@ export default function Application() {
             >
                 <NavBar />
                 <div className={styles.card__container}>
-                    {event && (
-                        <Card title="Event">
-                            <Event event={event} />
+                    {popup && (
+                        <Card title={popup.type}>
+                            {componentTypes[popup.type]}
                         </Card>
                     )}
                 </div>
