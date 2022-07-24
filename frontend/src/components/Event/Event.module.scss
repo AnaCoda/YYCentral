@@ -50,6 +50,17 @@
     }
 }
 
+.details__wrapper{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: stretch;
+    padding: 1.25rem;
+    margin: -1rem 0;
+    align-self: stretch;
+}
+
 .details{
     display: flex;
     flex-flow: column;
@@ -57,19 +68,19 @@
     justify-content: center;
     align-self: stretch;
     padding: 1.25rem;
-    margin: 1rem 0;
-    background-color: global.$color-background-details;
-    
-    .details__header{
-        font-size: 1.1rem;
-        font-weight: 500;
-        margin-top: 0.25rem;
-    }
-    .details__content{
-        font-size: 1rem;
-        margin-top: 0.15rem;
-        color: gray;
-    }
+    // margin: 1rem 0;
+    background-color: global.$color-background-details; 
+}
+
+.details__header{
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+.details__content{
+    font-size: 1rem;
+    margin-top: 0.15rem;
+    color: gray;
 }
 
 .description{
@@ -86,4 +97,66 @@
 
 .rating{
     color: rgb(255, 215, 0);
+}
+
+.reviews{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: stretch;
+    padding: 0 0.5rem;
+    margin-top: 1rem;
+
+    .reviews__content{
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        justify-content: center;
+        align-self: stretch;
+        padding: 0.5rem 1rem;
+        margin-top: 0.5rem;
+        border-radius: 5px;
+        h1{
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+        .reviews__content__text{
+            font-size: 1rem;
+            margin-top: 0.15rem;
+            color: gray;
+        }
+    }
+}
+
+.review{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: stretch;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    background-color: global.$color-background-details;
+    
+    .review__header{
+        font-size: 1rem;
+        font-weight: 500;
+        margin-top: 0.25rem;
+        align-self: stretch;
+    }
+    .review__content{
+        font-size: 1rem;
+        margin-top: 0.15rem;
+        color: gray;
+    }
+    .review__rating{
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+        align-self: stretch;
+        padding: 0.5rem 0;
+    }
 }
