@@ -144,7 +144,7 @@ export function Info({info}) {
                   <Review review={{name: "allan bob", rating: 5, date: "August 10, 2021",comment: "this is a comment"}}/>
                </div>
             </div>
-         </div>
+          </div>
       </div>
    );
 }
