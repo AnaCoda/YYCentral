@@ -163,6 +163,7 @@ export const DisplayMapComponent = () => {
 								url: event.url,
 								location: event.address,
 								phone: event.phone,
+                                tags: event.tags,
 								type: PopupType.event,
 							})
 						);
@@ -195,6 +196,7 @@ export const DisplayMapComponent = () => {
 								 url: restaurant.url,
 								 location: restaurant.address,
 								 phone: restaurant.phone,
+                                 tags: restaurant.tags,
 								 type: PopupType.restaurant,
 							})
 					  );

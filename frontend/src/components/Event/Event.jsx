@@ -56,6 +56,8 @@ export default function Event({event}) {
 // Info component
 export function Info({info}) {
 
+   const tags = info.tags ? info.tags.split(",") : [];
+
    return (
       <div className={styles.info}>
          
@@ -79,7 +81,14 @@ export function Info({info}) {
                      Tags
                   </h1>
                   <div className={styles.details__content}>
-                     Tech, Hackathon, Food
+                     {
+                        tags.map((tag) => (
+                           <>{tag}, &nbsp;</>
+                        )) ?? (
+                           "Tech, Hackathon, Food"
+                        )
+                        
+                     }
                   </div>
                </div>
                <div className={styles.location}>
