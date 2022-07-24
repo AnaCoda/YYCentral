@@ -1,7 +1,5 @@
 @use "../../variables";
 
-$clr-link-blue: #409fe3;
-
 .container {
     width: 80%;
     max-width: 70rem;
@@ -11,30 +9,39 @@ $clr-link-blue: #409fe3;
 .title {
     color: variables.$color-primary;
     font-size: 2.25rem;
-    margin: 50px 0 25px 0;
-    padding: 0 25px;
 }
-.event-article__title {
-    font-size: 1.75rem;
-    margin-bottom: 25px;
-    color: #555555;
-    padding: 0 25px;
+.titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding: 5px 25px 10px 25px;
 }
-.event-article__content {
-    background-color: #eeeeee;
+.events-list {
+    position: relative;
+    overflow-y: auto;
+    height: 80vh;
+    padding-right: 1rem;
 }
-.event-article__loc {
-    padding: 25px;
-    font-size: variables.$fs-lg;
-    font-weight: bold;
+.calendar-tabs {
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
 }
-.event-article__loc a {
-    color: $clr-link-blue;
-    text-decoration: none;
+.trending-btn,
+.friends-btn {
+    padding: 20px;
+    border: none;
+    color: variables.$color-primary;
+    background-color: variables.$color-neutral;
+    cursor: pointer;
 }
 
-.event-article img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.trending-btn-active,
+.friends-btn-active {
+    padding: 20px;
+    border: none;
+    background-color: variables.$color-primary;
+    color: variables.$color-neutral;
+    cursor: pointer;
 }
