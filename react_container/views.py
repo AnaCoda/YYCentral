@@ -14,6 +14,7 @@ from django.contrib.auth.models import User
 from django.middleware.csrf import get_token
 from rest_framework import serializers, response
 from rest_framework.views import APIView
+from .utils import *
 import datetime
 from dateutil.relativedelta import relativedelta
 
@@ -69,6 +70,10 @@ def login(request):
         return http.HttpResponse(json.dumps({'csrfmiddlewaretoken': get_token(request)}))
     # Request method is not POST or one of username or password is missing
     return http.HttpResponseBadRequest()
+
+def forum(request):
+    
+    return http.HttpResponse('Signup')
 
 @never_cache
 @ensure_csrf_cookie
@@ -138,9 +143,11 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
 class getEvents(APIView):
     def get(self, request):
+        
         all_events = Event.objects.all()
         serializer = EventSerializer(all_events, many=True)
-
+        getUtils = utils()
+        print(getUtils.getNClosest(51.047310,-114.057970, 10))
         return response.Response(serializer.data)
 
 class getPopularEvents(APIView):

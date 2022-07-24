@@ -8,6 +8,7 @@ import {
 
 
 import About from "./views/About";
+import Forum from "./views/Forum";
 import Application from "./components/Application/Application";
 import { DisplayMapComponent } from './DisplayMapComponent';
 
@@ -65,6 +66,7 @@ function AppEntry() {
             <Route path="/login">
                <SignIn updateUserInfo={updateUserInfo} />
             </Route>
+            <Route path="/forum" component={Forum} />
             <Route path="/nav" component={NavBar} />
             <PrivateRoute path="/app*">
                <Application/>
