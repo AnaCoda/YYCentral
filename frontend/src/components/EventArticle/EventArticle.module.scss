@@ -14,8 +14,13 @@ $clr-background-gray: #eeeeee;
 .event-article__content {
     background-color: $clr-background-gray;
 }
-.event-article__loc {
+.event-article__content__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 25px;
+}
+.event-article__loc {
     font-size: variables.$fs-lg;
     font-weight: bold;
 }

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+
+import InterestedSwitch from "components/InterestedSwitch";
 import calgaryImg from "../../assets/calgary_night.jpg";
 import styles from "./EventArticle.module.scss";
 
@@ -10,13 +12,27 @@ export default function EventArticle({
     url,
     onClick,
 }) {
+    const [interested, setInterested] = useState(false);
+
+    const toggleInterested = () => {
+        setInterested(!interested);
+    };
+
     return (
         <article className={styles["event-article"]}>
             <h2 className={styles["event-article__title"]}>{title}</h2>
+
             <div className={styles["event-article__content"]}>
-                <p className={styles["event-article__loc"]}>
-                    Location: <a href="#">{address}</a>
-                </p>
+                <div className={styles["event-article__content__header"]}>
+                    <p className={styles["event-article__loc"]}>
+                        Location: <a href="#">{address}</a>
+                    </p>
+                    <InterestedSwitch
+                        onToggle={toggleInterested}
+                        value={interested}
+                    />
+                </div>
+
                 <div>
                     <img
                         src={img ? img : calgaryImg}
