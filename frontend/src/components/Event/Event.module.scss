@@ -176,3 +176,28 @@
         padding: 0.5rem 0;
     }
 }
+
+.eventCard{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    background-color: global.$color-background-details;
+    border-radius: 5px;
+    h1{
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-top: 0.25rem;
+    }
+    .eventCard__content{
+        font-size: 1rem;
+        margin-top: 0.15rem;
+        color: gray;
+    }
+
+}

@@ -137,7 +137,7 @@ export function Info({info}) {
                   Reviews
                </h1>
                <div className={styles.reviews__content}>
-                  <Review review={{name: "pandy zhou", rating: 5, date: "July 10, 2022",comment: "this is a comment"}}/>
+                  <Review review={{name: "pandy zhou", rating: 5, date: "July 10, 2022",comment: "i love this place"}}/>
                   <Review review={{name: "jim geng", rating: 5, date: "June 9, 2022", comment: "this is a comment"}}/>
                   <Review review={{name: "jimothy geng", rating: 5, date: "April 20, 2022",comment: "this is a comment"}}/>
                   <Review review={{name: "allan kong", rating: 5, date: "Jan. 10, 2022",comment: "this is a comment"}}/>
