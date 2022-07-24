@@ -1,34 +1,35 @@
-// @use "_variables.scss" as global;
+@use "src/_variables.scss" as global;
 
 .card{
     align-items: center;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
     display: flex;
     flex: 1;
     flex-direction: column;
     justify-content: center;
     margin: 1rem;
+    max-height: 100vh;
     max-width: 500px;
     min-height: 200px;
     min-width: 200px;
     padding: 1rem;
     z-index: 1;
-    box-sizing: border-box;
-    max-height: 100vh;
 }
 
 .wrapper{
+    align-self: stretch;
     display: flex;
     flex-direction: column;
 }
 
 .card__header__title{
-    font-size: 2rem;
-    color: red;
-    padding: 0.5rem;
     border-radius: 5px;
+    color: global.$color-primary;
+    font-size: 2rem;
+    padding: 0.5rem;
 }
 
 .card__body{
