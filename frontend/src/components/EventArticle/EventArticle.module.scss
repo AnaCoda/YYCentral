@@ -4,15 +4,16 @@ $clr-link-blue: #409fe3;
 $clr-background-gray: #eeeeee;
 
 .event-article__title {
-    position: sticky;
-    top: 0;
     font-size: 1.75rem;
     color: #555555;
     padding: 15px 25px 25px 25px;
-    background-color: variables.$color-neutral;
+
     max-width: 80%;
 }
 .event-article__header {
+    position: sticky;
+    top: 0;
+    background-color: variables.$color-neutral;
     display: flex;
     justify-content: space-between;
 }
