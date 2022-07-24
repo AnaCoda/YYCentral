@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+
+import EventArticle from "../../components/EventArticle";
+import GroupIcon from "@mui/icons-material/Group";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import calgaryImg from "../../assets/calgary_night.jpg";
 import styles from "./Events.module.scss";
 
@@ -11,40 +15,69 @@ const yycHacks = {
     website: "https://hackathon.yyctech.ca/",
 };
 export default function Events() {
+    const [selectedTab, setSelectedTab] = useState("trending");
     const handleArticleClick = () => {
         console.log("You clicked the article!");
     };
+
     return (
         <div>
             <div className={styles.container}>
-                <h1 className={styles.title}>Daily Feed: July 22nd, 2022</h1>
-                {/* Event */}
-                <article
-                    className={styles["event-article"]}
-                    onClick={handleArticleClick}
-                >
-                    <h2 className={styles["event-article__title"]}>
-                        {yycHacks.title}
-                    </h2>
-                    <div className={styles["event-article__content"]}>
-                        <p className={styles["event-article__loc"]}>
-                            Location: <a href="#">{yycHacks.location}</a>
-                        </p>
-                        <div>
-                            <img src={yycHacks.img} alt={yycHacks.title} />{" "}
-                        </div>
-                        <div>
-                            <h3>Details</h3>
-                            <p>{yycHacks.details}</p>
-                            <p>
-                                Read More at{" "}
-                                <a href={yycHacks.website}>
-                                    {yycHacks.website}
-                                </a>
-                            </p>
-                        </div>
+                <div className={styles.titlebar}>
+                    <h1 className={styles.title}>Trending</h1>
+                    {/* Tabs */}
+                    <div className={styles["calendar-tabs"]}>
+                        <button
+                            className={
+                                selectedTab === "trending"
+                                    ? styles["trending-btn-active"]
+                                    : styles["trending-btn"]
+                            }
+                            onClick={() => setSelectedTab("trending")}
+                        >
+                            <LocalFireDepartmentIcon
+                                sx={{ fontSize: "40px" }}
+                            />
+                        </button>
+                        <button
+                            className={
+                                selectedTab === "friends"
+                                    ? styles["friends-btn-active"]
+                                    : styles["friends-btn"]
+                            }
+                            onClick={() => setSelectedTab("friends")}
+                        >
+                            <GroupIcon sx={{ fontSize: "40px" }} />
+                        </button>
                     </div>
-                </article>
+                </div>
+
+                {/* Event */}
+                {selectedTab === "trending" ? (
+                    <div className={styles["events-list"]}>
+                        <EventArticle
+                            {...yycHacks}
+                            onClick={handleArticleClick}
+                        />
+                        <EventArticle
+                            {...yycHacks}
+                            title={"Hack1"}
+                            onClick={handleArticleClick}
+                        />
+                        <EventArticle
+                            {...yycHacks}
+                            onClick={handleArticleClick}
+                        />
+                        <EventArticle
+                            {...yycHacks}
+                            onClick={handleArticleClick}
+                        />
+                    </div>
+                ) : (
+                    selectedTab === "friends" && (
+                        <div>No friends yet. Find some!</div>
+                    )
+                )}
             </div>
         </div>
     );
