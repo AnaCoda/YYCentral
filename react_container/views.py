@@ -125,17 +125,18 @@ class RestaurantSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class getEvents(APIView):
-    """
-    Retrieve payroll runs including line items for a company
-    """
     def get(self, request):
         all_events = Event.objects.all()
         serializer = EventSerializer(all_events, many=True)
 
         return response.Response(serializer.data)
+
+class getPopularEvents(APIView):
+    def get(self, request):
+        soonEvents = Event.objects.filter()
     
 class getRestaurants(APIView):
     def get(self, request):
-        all_restaurants = Restaurant.objects.all()
+        all_restaurants = Restaurant.objects.all(json.loads(all_dates))
         serializer = RestaurantSerializer(all_restaurants, many=True)
         return response.Response(serializer.data)
