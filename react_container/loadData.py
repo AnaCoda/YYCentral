@@ -22,7 +22,6 @@ class DataLoader():
             event_type=result['event_type'],
             url=result['more_info_url'],
             all_dates=json.dumps(result['all_dates'].split('<br>')),
-            first_date= datetime.datetime(),
             latitude=float(result['latitude']),
             longitude=float(result['longitude'])
         ) for result in results_records]
