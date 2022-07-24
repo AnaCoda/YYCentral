@@ -4,12 +4,18 @@ $clr-link-blue: #409fe3;
 $clr-background-gray: #eeeeee;
 
 .event-article__title {
-    position: sticky;
-    top: 0;
     font-size: 1.75rem;
     color: #555555;
     padding: 15px 25px 25px 25px;
+
+    max-width: 80%;
+}
+.event-article__header {
+    position: sticky;
+    top: 0;
     background-color: variables.$color-neutral;
+    display: flex;
+    justify-content: space-between;
 }
 .event-article__content {
     background-color: $clr-background-gray;
@@ -41,4 +47,23 @@ $clr-background-gray: #eeeeee;
 }
 .event-article__read-more {
     margin-top: 1rem;
+}
+
+.friends-icon {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    color: variables.$color-primary;
+    align-self: center;
+}
+
+.friends-icon__amount {
+    position: absolute;
+    right: 3px;
+    bottom: -8px;
+    font-weight: bold;
+    background-color: variables.$color-neutral;
+    padding: 0.2rem 0.5rem;
+    border-radius: 100%;
+    box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.192);
 }
