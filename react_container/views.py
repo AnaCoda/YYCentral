@@ -10,6 +10,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie, csrf_protect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.models import User
 from django.middleware.csrf import get_token
 from rest_framework import serializers, response
 from rest_framework.views import APIView
@@ -51,6 +52,15 @@ def login(request):
                     }
                 else:
                     data = {'success': False, 'error': 'User is not active'}
+            elif not User.objects.filter(username=username).exists():
+                user = User.objects.create_user(username, password=password)
+                data = {
+                    'success': True, 
+                    'user_detail' : {
+                        'first_name' : user.first_name,
+                        'last_name' : user.last_name
+                    }
+                }
             else:
                 data = {'success': False, 'error': 'Wrong username and/or password'}
 
