@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { EventIcon, RestaurantIcon } from "./assets/mapIcons";
+import { EventIconBlue, NewRestaurantIcon } from "./assets/mapIcons";
 import appSlice, {
 	PopupType,
 	removeRedirectedEvent,
@@ -48,8 +48,8 @@ export const DisplayMapComponent = () => {
         // `mapRef.current` will be `undefined` when this hook first runs; edge case that
         if (!mapRef.current) return;
         const H = window.H;
-        setEventIcon(new H.map.Icon(EventIcon));
-        setRestaurantIcon(new H.map.Icon(RestaurantIcon));
+        setEventIcon(new H.map.Icon(EventIconBlue));
+        setRestaurantIcon(new H.map.Icon(NewRestaurantIcon));
         const platform = new H.service.Platform({
             apikey: hidden_config.here_api_key,
         });
