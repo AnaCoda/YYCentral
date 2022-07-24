@@ -10,14 +10,7 @@ export default function Event({event}) {
 
    return (
       <div className={styles.event}>
-         {/* <div className={styles.header}>
-            <h1 className={styles.header__title}>
-               Event
-            </h1>
-            <IconButton className={styles.header__exit} onClick={exit}>
-               <CloseIcon sx={{color: "white"}}/>
-            </IconButton>
-         </div> */}
+         <Details info={event} />
          <div className={styles.toggle}>
             <ToggleButtonGroup
                value={selected}
@@ -47,73 +40,96 @@ export default function Event({event}) {
                </ToggleButton>
             </ToggleButtonGroup>
          </div>
-         <Info info={event}/>
+         {
+            selected === "info" ? (
+               <Info info={event}/>
+            ) : (
+               <EventCard event={event}/>
+            )
+         }
       </div>
    )
 }
 
 
-// Info component
-export function Info({info}) {
-
+export function Details({info}){
    const tags = info.tags ? info.tags.split(",") : [];
 
    return (
-      <div className={styles.info}>
-         
-         <div className={styles.body}>
-            <div className={styles.title}>
-               <h1>
-                  {info.title}
+      <div className={styles.details__wrapper}>
+         <div className={styles.title}>
+            <h1>
+               {info.title}
+            </h1>
+            <ShoppingBagIcon sx={{flex: 0.1, margin: "1.25rem", fontSize:"2rem", color: "rgb(255, 196, 0)"}}/>
+         </div>
+         <div className={styles.details}>
+            <div className={styles.rating}>
+               <StarIcon className={styles.rating}/>
+               <StarIcon className={styles.rating}/>
+               <StarIcon className={styles.rating}/>
+               <StarIcon className={styles.rating}/>
+               <StarIcon className={styles.rating}/>
+            </div>
+            <div className={styles.tags}>
+               <h1 className={styles.details__header}>
+                  Tags
                </h1>
-               <ShoppingBagIcon sx={{flex: 0.1, margin: "1.25rem", fontSize:"2rem", color: "rgb(255, 196, 0)"}}/>
+               <div className={styles.details__content}>
+                  {
+                     tags.map((tag) => (
+                        <>{tag}, &nbsp;</>
+                     )) ?? (
+                        "Tech, Hackathon, Food"
+                     )
+                     
+                  }
+               </div>
             </div>
-            <div className={styles.details}>
-               <div className={styles.rating}>
-                  <StarIcon className={styles.rating}/>
-                  <StarIcon className={styles.rating}/>
-                  <StarIcon className={styles.rating}/>
-                  <StarIcon className={styles.rating}/>
-                  <StarIcon className={styles.rating}/>
+            <div className={styles.location}>
+               <h1 className={styles.details__header}>
+                  Location
+               </h1>
+               <div className={styles.details__content}>
+                  {info.location}
                </div>
-               <div className={styles.tags}>
-                  <h1 className={styles.details__header}>
-                     Tags
-                  </h1>
-                  <div className={styles.details__content}>
-                     {
-                        tags.map((tag) => (
-                           <>{tag}, &nbsp;</>
-                        )) ?? (
-                           "Tech, Hackathon, Food"
-                        )
-                        
-                     }
-                  </div>
-               </div>
-               <div className={styles.location}>
-                  <h1 className={styles.details__header}>
-                     Location
-                  </h1>
-                  <div className={styles.details__content}>
-                     {info.location}
-                  </div>
-               </div>
-               {
-                  info.phone &&
-                  (
-                     <div className={styles.phone}>
-                        <h1 className={styles.details__header}>
-                           Phone
-                        </h1>
-                        <div className={styles.details__content}>
-                           {info.phone}
-                        </div>
+            </div>
+            {
+               info.phone &&
+               (
+                  <div className={styles.phone}>
+                     <h1 className={styles.details__header}>
+                        Phone
+                     </h1>
+                     <div className={styles.details__content}>
+                        {info.phone}
                      </div>
-                  )
-               }
-            </div>
+                  </div>
+               )
+            }
+         </div>
+      </div>
+   )
+}
+
+// Info component
+export function Info({info}) {
+   return (
+      <div className={styles.info}>
+         <div className={styles.body}>
             <div className={styles.description} dangerouslySetInnerHTML={{__html: "<h1>Info</h1>" + info.description}} />
+            <div className={styles.reviews}>
+               <h1 className={styles.details__header}>
+                  Reviews
+               </h1>
+               <div className={styles.reviews__content}>
+                  <Review review={{name: "pandy zhou", rating: 5, date: "July 10, 2022",comment: "this is a comment"}}/>
+                  <Review review={{name: "jim geng", rating: 5, date: "June 9, 2022", comment: "this is a comment"}}/>
+                  <Review review={{name: "jimothy geng", rating: 5, date: "April 20, 2022",comment: "this is a comment"}}/>
+                  <Review review={{name: "allan kong", rating: 5, date: "Jan. 10, 2022",comment: "this is a comment"}}/>
+                  <Review review={{name: "allan konk", rating: 5, date: "August 10, 2021",comment: "this is a comment"}}/>
+               </div>
+            </div>
          </div>
       </div>
    );
@@ -124,7 +140,47 @@ export function Restaurant({restaurant}) {
 
    return (
       <div className={styles.restaurant}>
+         <Details info={restaurant}/>
          <Info info={restaurant}/>
       </div>
    )
+}
+
+export function EventCard({event}) {
+   return (
+      <div className={styles.eventCard}>
+         Event {event.title}
+      </div>
+   )
+}
+
+export function Review({review}){
+   return (
+      <div className={styles.review}>
+         <div className={styles.review__header}>
+            <h1>
+               {review.name}
+            </h1>
+            <div className={styles.review__rating}>
+               <div className={styles.stars}>
+                  {
+                     [...Array(review.rating)].map((_, i) => (
+                        <StarIcon className={styles.rating}/>
+                     ))
+                  }
+               </div>
+
+               <div className={styles.review__date}>
+                  {review.date}
+               </div>
+
+            </div>
+         </div>
+         <div className={styles.review__body}>
+            <div className={styles.review__content}>
+               {review.comment}
+            </div>
+         </div>
+      </div>
+   );
 }

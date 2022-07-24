@@ -17,6 +17,16 @@ html {
         color: global.$color-primary-light;
         text-decoration: none;
     }
+
+    *::-webkit-scrollbar{
+        width: 5px;
+        background: transparent;
+        margin: 10px 0;
+    }
+    *::-webkit-scrollbar-thumb{
+        background: global.$color-primary;
+        border-radius: 5px;
+    }
 }
 
 iframe {
