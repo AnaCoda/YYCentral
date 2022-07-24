@@ -10,6 +10,7 @@ class Event(models.Model):
     event_type = models.CharField(max_length=50)
     url = models.URLField()
     all_dates = models.CharField(max_length=100)
+    first_date = models.DateTimeField()
     latitude = models.DecimalField(decimal_places=6, max_digits=10)
     longitude = models.DecimalField(decimal_places=6, max_digits=10)
 
@@ -19,6 +20,7 @@ class Restaurant(models.Model):
     phone = models.CharField(max_length=20)
     website = models.URLField()
     rating = models.DecimalField(decimal_places=2, max_digits=3)
+    pricing = models.DecimalField(decimal_places=2, max_digits=3)
     description = models.CharField(max_length=500)
     tags = models.CharField(max_length=100)
     image_urls = models.CharField(max_length=800)
