@@ -20,7 +20,7 @@ $clr-background-gray: #eeeeee;
     font-weight: bold;
 }
 .event-article__loc a {
-    color: $clr-link-blue;
+    color: variables.$color-primary;
     text-decoration: none;
 }
 
@@ -28,7 +28,9 @@ $clr-background-gray: #eeeeee;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
 }
+
 .event-article__details {
     padding: 25px;
 }

@@ -1,29 +1,34 @@
 import React from "react";
+import calgaryImg from "../../assets/calgary_night.jpg";
 import styles from "./EventArticle.module.scss";
 
 export default function EventArticle({
     title,
-    location,
+    address,
     img,
-    details,
-    website,
+    notes,
+    url,
     onClick,
 }) {
     return (
-        <article className={styles["event-article"]} onClick={onClick}>
+        <article className={styles["event-article"]}>
             <h2 className={styles["event-article__title"]}>{title}</h2>
             <div className={styles["event-article__content"]}>
                 <p className={styles["event-article__loc"]}>
-                    Location: <a href="#">{location}</a>
+                    Location: <a href="#">{address}</a>
                 </p>
                 <div>
-                    <img src={img} alt={title} />
+                    <img
+                        src={img ? img : calgaryImg}
+                        alt={title}
+                        onClick={onClick}
+                    />
                 </div>
                 <div className={styles["event-article__details"]}>
                     <h3>Details</h3>
-                    <p>{details}</p>
+                    <p>{notes}</p>
                     <p className={styles["event-article__read-more"]}>
-                        Read More at <a href={website}>{website}</a>
+                        Read More at <a href={url}>{url}</a>
                     </p>
                 </div>
             </div>
