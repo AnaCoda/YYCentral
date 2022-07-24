@@ -101,6 +101,18 @@ export const DisplayMapComponent = () =>
 				setRestaurants(data)
 				console.log(data)
 			});
+			fetch(`http://127.0.0.1:8000/api/popularEvents/`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Token ${localStorage.getItem('token')}`
+				},
+			})
+				.then(res => res.json())
+				.then(data =>
+				{
+					console.log(data)
+				});
 	}, []);
 
 	// Add markers to map

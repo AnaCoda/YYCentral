@@ -9,5 +9,6 @@ urlpatterns = [
     path('auth/logout', views.logout),
     path('api/getEvents/', views.getEvents.as_view()),
     path('api/getRestaurants/', views.getRestaurants.as_view()),
+    path('api/popularEvents/', views.getPopularEvents.as_view()),
     re_path(r'', views.catchall),
 ]
