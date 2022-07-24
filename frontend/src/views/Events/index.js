@@ -94,7 +94,22 @@ export default function Events() {
                     </div>
                 ) : (
                     selectedTab === "friends" && (
-                        <div>No friends are going to events yet.</div>
+                        <div className={styles["events-list"]}>
+                            {events.map((event) => {
+                                const num = Math.floor(Math.random() * 10 + 1);
+                                return (
+                                    <EventArticle
+                                        key={event.id}
+                                        {...event}
+                                        onClick={() =>
+                                            handleArticleClick(event)
+                                        }
+                                        showFriends
+                                        numFriends={num}
+                                    />
+                                );
+                            })}
+                        </div>
                     )
                 )}
             </div>

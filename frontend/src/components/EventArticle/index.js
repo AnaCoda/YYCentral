@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import GroupIcon from "@mui/icons-material/Group";
 import InterestedSwitch from "components/InterestedSwitch";
 import calgaryImg from "../../assets/calgary_night.jpg";
 import styles from "./EventArticle.module.scss";
@@ -11,6 +12,8 @@ export default function EventArticle({
     notes,
     url,
     onClick,
+    showFriends,
+    numFriends,
 }) {
     const [interested, setInterested] = useState(false);
 
@@ -20,7 +23,17 @@ export default function EventArticle({
 
     return (
         <article className={styles["event-article"]}>
-            <h2 className={styles["event-article__title"]}>{title}</h2>
+            <div className={styles["event-article__header"]}>
+                <h2 className={styles["event-article__title"]}>{title}</h2>
+                {showFriends && (
+                    <div className={styles["friends-icon"]}>
+                        <GroupIcon sx={{ fontSize: "30px" }} />
+                        <span className={styles["friends-icon__amount"]}>
+                            {numFriends}
+                        </span>
+                    </div>
+                )}
+            </div>
 
             <div className={styles["event-article__content"]}>
                 <div className={styles["event-article__content__header"]}>
