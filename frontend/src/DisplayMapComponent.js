@@ -4,9 +4,9 @@ import * as React from "react";
 
 import { EventIconBlue, NewRestaurantIcon } from "./assets/mapIcons";
 import appSlice, {
-	PopupType,
-	removeRedirectedEvent,
-	setPopup,
+    PopupType,
+    removeRedirectedEvent,
+    setPopup,
 } from "./redux/reducers/appSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -26,7 +26,7 @@ export const DisplayMapComponent = () => {
     const [restaurantIcon, setRestaurantIcon] = React.useState([]);
 
     const dispatch = useDispatch();
-    const { redirectedEvent } = useSelector((state) => state.app);
+    const { redirectedEvent, filter } = useSelector((state) => state.app);
 
     /**
      * Create the map instance
@@ -35,7 +35,7 @@ export const DisplayMapComponent = () => {
      */
     const setUserLocation = (position) => {
         if (!(map.length > 0)) return;
-      //   console.log(map);
+        //   console.log(map);
         setMap({
             ...map,
             center: {
@@ -89,14 +89,14 @@ export const DisplayMapComponent = () => {
         return () => {
             hMap.dispose();
         };
-    }, [mapRef]); // This will run this hook every time this ref is updated
+    }, [mapRef, filter]); // This will run this hook every time this ref is updated
 
     // Fetch data --> 1.)
     React.useEffect(() => {
         if (redirectedEvent) {
             setEvents([redirectedEvent]);
             dispatch(removeRedirectedEvent());
-				dispatch(setPopup({...redirectedEvent, type: PopupType.event}));
+            dispatch(setPopup({ ...redirectedEvent, type: PopupType.event }));
         } else {
             // Fetch the event data from backend
             fetch(`http://127.0.0.1:8000/api/getEvents/`, {
@@ -109,7 +109,7 @@ export const DisplayMapComponent = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     setEvents(data);
-                  //   console.log(data);
+                    //   console.log(data);
                 });
             fetch(`http://127.0.0.1:8000/api/getRestaurants/`, {
                 method: "GET",
@@ -121,7 +121,7 @@ export const DisplayMapComponent = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     setRestaurants(data);
-                  //   console.log(data);
+                    //   console.log(data);
                 });
             fetch(`http://127.0.0.1:8000/api/popularEvents/`, {
                 method: "GET",
@@ -132,7 +132,7 @@ export const DisplayMapComponent = () => {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                  //   console.log(data);
+                    //   console.log(data);
                 });
         }
     }, []);
@@ -141,72 +141,87 @@ export const DisplayMapComponent = () => {
     React.useEffect(() => {
         if (!map) return;
         var markerEvents = [];
-        events.forEach((event) => {
-            const newMarker = new H.map.Marker({
-                lat: event.latitude,
-                lng: event.longitude,
-            });
-            newMarker.setData(
-                `<div><a href="${event.url}">${event.title}</a><br>`
-            );
-            if (eventIcon) {
-                newMarker.setIcon(eventIcon);
-            }
-            newMarker.addEventListener(
-					"tap",
-					(tapevent) => {
-						dispatch(
-							setPopup({
-								title: event.title,
-								description: event.notes,
-								date: event.date,
-								url: event.url,
-								location: event.address,
-								phone: event.phone,
-                                tags: event.tags,
-								type: PopupType.event,
-							})
-						);
-					},
-					false
-            );
-            markerEvents.push(newMarker);
-            map.addObject(newMarker);
-        });
-        restaurants.forEach((restaurant) => {
-            const newMarker = new H.map.Marker({
-                lat: parseFloat(restaurant.latitude),
-                lng: parseFloat(restaurant.longitude),
-            });
-            newMarker.setData(
-                `<div><a href="${restaurant.website}">${restaurant.name}</a><br>`
-            );
-            if (restaurantIcon) {
-                newMarker.setIcon(restaurantIcon);
-            }
-            newMarker.addEventListener(
-                "tap",
-                (tapevent) => {
-						console.log(restaurant);
-						dispatch(
-							setPopup({
-								 title: restaurant.name,
-								 description: restaurant.description,
-								 date: restaurant.date,
-								 url: restaurant.url,
-								 location: restaurant.address,
-								 phone: restaurant.phone,
-                                 tags: restaurant.tags,
-								 type: PopupType.restaurant,
-							})
-					  );
-                },
-                false
-            );
-            markerEvents.push(newMarker);
-            map.addObject(newMarker);
-        });
-    }, [events, restaurants, H.map.Marker, map, ui, eventIcon, restaurantIcon]);
+        {
+            filter !== "food" &&
+                events.forEach((event) => {
+                    const newMarker = new H.map.Marker({
+                        lat: event.latitude,
+                        lng: event.longitude,
+                    });
+                    newMarker.setData(
+                        `<div><a href="${event.url}">${event.title}</a><br>`
+                    );
+                    if (eventIcon) {
+                        newMarker.setIcon(eventIcon);
+                    }
+                    newMarker.addEventListener(
+                        "tap",
+                        (tapevent) => {
+                            dispatch(
+                                setPopup({
+                                    title: event.title,
+                                    description: event.notes,
+                                    date: event.date,
+                                    url: event.url,
+                                    location: event.address,
+                                    phone: event.phone,
+                                    tags: event.tags,
+                                    type: PopupType.event,
+                                })
+                            );
+                        },
+                        false
+                    );
+                    markerEvents.push(newMarker);
+                    map.addObject(newMarker);
+                });
+        }
+        {
+            filter !== "event" &&
+                restaurants.forEach((restaurant) => {
+                    const newMarker = new H.map.Marker({
+                        lat: parseFloat(restaurant.latitude),
+                        lng: parseFloat(restaurant.longitude),
+                    });
+                    newMarker.setData(
+                        `<div><a href="${restaurant.website}">${restaurant.name}</a><br>`
+                    );
+                    if (restaurantIcon) {
+                        newMarker.setIcon(restaurantIcon);
+                    }
+                    newMarker.addEventListener(
+                        "tap",
+                        (tapevent) => {
+                            console.log(restaurant);
+                            dispatch(
+                                setPopup({
+                                    title: restaurant.name,
+                                    description: restaurant.description,
+                                    date: restaurant.date,
+                                    url: restaurant.url,
+                                    location: restaurant.address,
+                                    phone: restaurant.phone,
+                                    tags: restaurant.tags,
+                                    type: PopupType.restaurant,
+                                })
+                            );
+                        },
+                        false
+                    );
+                    markerEvents.push(newMarker);
+                    map.addObject(newMarker);
+                });
+        }
+    }, [
+        events,
+        restaurants,
+        H.map.Marker,
+        map,
+        ui,
+        eventIcon,
+        restaurantIcon,
+        filter,
+    ]);
 
     return <div className="map" ref={mapRef} style={{ height: "100vh" }} />;
 };

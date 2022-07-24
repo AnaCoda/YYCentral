@@ -55,7 +55,11 @@ export default function EventArticle({
                 </div>
                 <div className={styles["event-article__details"]}>
                     <h3>Details</h3>
-                    <p>{notes}</p>
+                    <p
+                        dangerouslySetInnerHTML={{
+                            __html: notes,
+                        }}
+                    />
                     <p className={styles["event-article__read-more"]}>
                         Read More at <a href={url}>{url}</a>
                     </p>
