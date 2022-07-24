@@ -9,6 +9,7 @@ export const appSlice = createSlice({
     reducers: {
         setEvent: (state, action) => {
             state.event = action.payload;
+            console.log(action.payload);
         },
         setRedirectedEvent: (state, action) => {
             state.redirectedEvent = action.payload;

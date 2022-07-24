@@ -92,6 +92,7 @@ export const DisplayMapComponent = () => {
         if (redirectedEvent) {
             setEvents([redirectedEvent]);
             dispatch(removeRedirectedEvent());
+            dispatch(setEvent(redirectedEvent));
         } else {
             // Fetch the event data from backend
             fetch(`http://127.0.0.1:8000/api/getEvents/`, {

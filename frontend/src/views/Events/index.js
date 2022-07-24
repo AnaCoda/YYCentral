@@ -13,7 +13,7 @@ const yycHacks = {
     title: "YYCHacks Calgary Hackathon",
     location: "The Platform Calgary",
     img: calgaryImg,
-    details:
+    description:
         "Like all places, Alberta is not immune to the upheaval and changes faced by the global community over the past ten-plus years. From energy sector boom/bust cycles (more text here if necessary)...",
     website: "https://hackathon.yyctech.ca/",
 };
@@ -24,13 +24,14 @@ export default function Events() {
     const handleArticleClick = () => {
         console.log("You clicked the article!");
         const dummyEvent = {
-            address: "221 12 Avenue SW",
+            location: "221 12 Avenue SW",
             all_dates: '["Aug 16 2022 2:30 - 4:30 p.m."]',
             event_type: "nan",
             id: 189,
             latitude: "51.041313",
             longitude: "-114.067013",
-            notes: "For children ages 6+, this course teaches self-awareness and personal safety.&nbsp; Throughout this interactive workshop, children learn tips for basic personal safety.&nbsp; All lessons are reinforced through role-playing and group discussion.&nbsp; FREE!&nbsp; Register at: activebeltline@calgary.ca\n\nLimited spots are available.&nbsp; Preferences will be given to children living in the Beltline and surrounding neighbourhoods.\n\nAccessibility barriers:&nbsp; Multiple staircases to access program space.&nbsp; Street parking only.",
+            description:
+                "For children ages 6+, this course teaches self-awareness and personal safety.&nbsp; Throughout this interactive workshop, children learn tips for basic personal safety.&nbsp; All lessons are reinforced through role-playing and group discussion.&nbsp; FREE!&nbsp; Register at: activebeltline@calgary.ca\n\nLimited spots are available.&nbsp; Preferences will be given to children living in the Beltline and surrounding neighbourhoods.\n\nAccessibility barriers:&nbsp; Multiple staircases to access program space.&nbsp; Street parking only.",
             title: "Street Smarts",
             url: "http://google.ca",
         };
