@@ -60,7 +60,7 @@ export default function Event({event}) {
                   {event.phone}
                </div>
             </div>
-            <div className={styles.description} dangerouslySetInnerHTML={{__html: event.description}} />
+            <div className={styles.description} dangerouslySetInnerHTML={{__html: "<h1>Info</h1>" + event.description}} />
          </div>
          
       </div>

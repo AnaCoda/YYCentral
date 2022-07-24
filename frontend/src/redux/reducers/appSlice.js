@@ -4,6 +4,7 @@ export const appSlice = createSlice({
    name: "app",
    initialState: {
       event: undefined,
+      
    },
    reducers: {
       setEvent: (state, action) => {
