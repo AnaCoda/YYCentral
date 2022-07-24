@@ -32,10 +32,12 @@ export default function About() {
                             Are you visiting or a local and wanting to explore
                             everything YYC? Checkout local events and
                             destinations using our interactive map.{" "}
+                        </li>
+                        <li>
                             <Link to="/login" className={styles["signup-link"]}>
                                 Sign up
                             </Link>{" "}
-                            to leave your reviews and get notified of events.
+                            to express your interest in events, add friends, and see which events they're interested in
                         </li>
                     </ul>
                     <button
