@@ -42,7 +42,7 @@ class DataLoader():
         import geocoder
 
         result_instances = []
-        with open('react_container/files/CalgaryRestaurantsLong2.csv') as csv_file:
+        with open('react_container/files/CalgaryRestaurantsLong.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             next(csv_reader)
             for row in csv_reader:
