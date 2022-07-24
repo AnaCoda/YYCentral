@@ -1,5 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import React from 'react';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import StarIcon from '@mui/icons-material/Star';
@@ -54,60 +56,72 @@ export default function Event({event}) {
 
 export function Details({info}){
    const tags = info.tags ? info.tags.split(",") : [];
+   const [favorite, setFavorite] = React.useState(false);
 
    return (
       <div className={styles.details__wrapper}>
-         <div className={styles.title}>
-            <h1>
-               {info.title}
-            </h1>
-            <ShoppingBagIcon sx={{flex: 0.1, margin: "1.25rem", fontSize:"2rem", color: "rgb(255, 196, 0)"}}/>
-         </div>
-         <div className={styles.details}>
-            <div className={styles.rating}>
-               <StarIcon className={styles.rating}/>
-               <StarIcon className={styles.rating}/>
-               <StarIcon className={styles.rating}/>
-               <StarIcon className={styles.rating}/>
-               <StarIcon className={styles.rating}/>
-            </div>
-            <div className={styles.tags}>
-               <h1 className={styles.details__header}>
-                  Tags
+            <div className={styles.title}>
+               <h1>
+                  {info.title}
                </h1>
-               <div className={styles.details__content}>
+               <ShoppingBagIcon sx={{flex: 0.1, margin: "1.25rem", fontSize:"2rem", color: "rgb(255, 196, 0)"}}/>
+            </div>
+            <div className={styles.details}>
+               <div className={styles.info}>
+                  <div className={styles.rating}>
+                     <StarIcon className={styles.rating}/>
+                     <StarIcon className={styles.rating}/>
+                     <StarIcon className={styles.rating}/>
+                     <StarIcon className={styles.rating}/>
+                     <StarIcon className={styles.rating}/>
+                  </div>
+                  <div className={styles.tags}>
+                     <h1 className={styles.details__header}>
+                        Tags
+                     </h1>
+                     <div className={styles.details__content}>
+                        {
+                           tags.map((tag) => (
+                              <>{tag}, &nbsp;</>
+                           )) ?? (
+                              "Tech, Hackathon, Food"
+                           )
+                           
+                        }
+                     </div>
+                  </div>
+                  <div className={styles.location}>
+                     <h1 className={styles.details__header}>
+                        Location
+                     </h1>
+                     <div className={styles.details__content}>
+                        {info.location}
+                     </div>
+                  </div>
                   {
-                     tags.map((tag) => (
-                        <>{tag}, &nbsp;</>
-                     )) ?? (
-                        "Tech, Hackathon, Food"
+                     info.phone &&
+                     (
+                        <div className={styles.phone}>
+                           <h1 className={styles.details__header}>
+                              Phone
+                           </h1>
+                           <div className={styles.details__content}>
+                              {info.phone}
+                           </div>
+                        </div>
                      )
-                     
+                  }
+               </div>
+               <div className={styles.like} onClick={() => setFavorite(!favorite)}>
+                  {
+                     !favorite ? (
+                        <FavoriteBorderIcon sx={{margin: "1.25rem", fontSize:"2rem", color: "rgb(255, 196, 0)"}}/>
+                     ) : (
+                        <FavoriteIcon sx={{margin: "1.25rem", fontSize:"2rem", color: "rgb(255, 196, 0)"}}/>
+                     )
                   }
                </div>
             </div>
-            <div className={styles.location}>
-               <h1 className={styles.details__header}>
-                  Location
-               </h1>
-               <div className={styles.details__content}>
-                  {info.location}
-               </div>
-            </div>
-            {
-               info.phone &&
-               (
-                  <div className={styles.phone}>
-                     <h1 className={styles.details__header}>
-                        Phone
-                     </h1>
-                     <div className={styles.details__content}>
-                        {info.phone}
-                     </div>
-                  </div>
-               )
-            }
-         </div>
       </div>
    )
 }
@@ -127,7 +141,7 @@ export function Info({info}) {
                   <Review review={{name: "jim geng", rating: 5, date: "June 9, 2022", comment: "this is a comment"}}/>
                   <Review review={{name: "jimothy geng", rating: 5, date: "April 20, 2022",comment: "this is a comment"}}/>
                   <Review review={{name: "allan kong", rating: 5, date: "Jan. 10, 2022",comment: "this is a comment"}}/>
-                  <Review review={{name: "allan konk", rating: 5, date: "August 10, 2021",comment: "this is a comment"}}/>
+                  <Review review={{name: "allan bob", rating: 5, date: "August 10, 2021",comment: "this is a comment"}}/>
                </div>
             </div>
          </div>
