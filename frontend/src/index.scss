@@ -12,6 +12,7 @@ $ff-primary: "Manrope", sans-serif;
 html {
     font-family: $ff-primary;
     overflow: hidden;
+    *{transition: cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s};
 
     a{
         color: global.$color-primary-light;

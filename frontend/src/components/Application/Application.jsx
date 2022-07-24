@@ -5,6 +5,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import Card from "../Card/Card";
 import { DisplayMapComponent } from "../../DisplayMapComponent";
 import Events from "../../views/Events";
+import FilterBar from "components/FilterBar";
 import NavBar from "../NavBar/NavBar";
 import { selectPopup } from "../../redux/reducers/appSlice";
 import styles from "./Application.module.scss";
@@ -16,15 +17,16 @@ export default function Application() {
     const appLocation = location.pathname.split("/");
 
     const componentTypes = {
-        event: <Event event={popup}/>,
-        restaurant: <Restaurant restaurant={popup}/>,
-    }
+        event: <Event event={popup} />,
+        restaurant: <Restaurant restaurant={popup} />,
+    };
 
     return (
         <div className={styles.application}>
-            <div className={styles.overlay} 
+            <div
+                className={styles.overlay}
                 style={{
-                    width: appLocation[2] ? "0%" : "100vw"
+                    width: appLocation[2] ? "0%" : "100vw",
                 }}
             >
                 <NavBar />
@@ -35,6 +37,7 @@ export default function Application() {
                         </Card>
                     )}
                 </div>
+                {!appLocation[2] && <FilterBar />}
             </div>
             <Switch>
                 <Route path="/app/events" component={Events} />
