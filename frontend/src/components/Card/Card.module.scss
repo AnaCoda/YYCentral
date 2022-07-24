@@ -1,0 +1,48 @@
+@use "src/_variables.scss" as global;
+
+.card{
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem;
+    max-height: 100vh;
+    max-width: 500px;
+    min-height: 200px;
+    min-width: 200px;
+    padding: 1rem;
+    z-index: 1;
+}
+
+.wrapper{
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    background-color: global.$color-primary;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    h1{
+        font-size: 2rem;
+        color: global.$color-neutral;
+    }
+}
+
+.card__body{
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    overflow-y: auto;
+}

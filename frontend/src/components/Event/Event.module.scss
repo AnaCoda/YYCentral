@@ -1,0 +1,89 @@
+@use "src/_variables.scss" as global;
+
+.event{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+}
+
+.title{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+
+    h1{
+        font-size: 1.35rem;
+        color: global.$color-primary;
+        flex: 0.9;
+    }
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+}
+
+.header{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    background-color: global.$color-primary;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    h1{
+        font-size: 2rem;
+        color: global.$color-neutral;
+    }
+}
+
+.details{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: stretch;
+    padding: 1.25rem;
+    margin: 1rem 0;
+    background-color: global.$color-background-details;
+    
+    .details__header{
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-top: 0.25rem;
+    }
+    .details__content{
+        font-size: 1rem;
+        margin-top: 0.15rem;
+        color: gray;
+    }
+}
+
+.description{
+    font-size: 1rem;
+    color: #000;
+    overflow-y: auto;
+    padding: 0 0.5rem;
+    
+    h1{
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+}
+
+.rating{
+    color: rgb(255, 215, 0);
+}

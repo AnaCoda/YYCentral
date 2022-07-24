@@ -1,3 +1,5 @@
+@use "src/_variables.scss" as global;
+
 $ff-primary: "Manrope", sans-serif;
 *,
 ::before,
@@ -9,6 +11,12 @@ $ff-primary: "Manrope", sans-serif;
 
 html {
     font-family: $ff-primary;
+    overflow: hidden;
+
+    a{
+        color: global.$color-primary-light;
+        text-decoration: none;
+    }
 }
 
 iframe {

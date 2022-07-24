@@ -1,0 +1,44 @@
+@use "../../variables";
+
+$clr-link-blue: #409fe3;
+$clr-background-gray: #eeeeee;
+
+.event-article__title {
+    position: sticky;
+    top: 0;
+    font-size: 1.75rem;
+    color: #555555;
+    padding: 15px 25px 25px 25px;
+    background-color: variables.$color-neutral;
+}
+.event-article__content {
+    background-color: $clr-background-gray;
+}
+.event-article__content__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+}
+.event-article__loc {
+    font-size: variables.$fs-lg;
+    font-weight: bold;
+}
+.event-article__loc a {
+    color: variables.$color-primary;
+    text-decoration: none;
+}
+
+.event-article img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.event-article__details {
+    padding: 25px;
+}
+.event-article__read-more {
+    margin-top: 1rem;
+}

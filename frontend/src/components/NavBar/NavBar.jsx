@@ -1,32 +1,50 @@
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import { Link, useHistory } from "react-router-dom";
+
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { IconButton } from "@mui/material";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import LogoutIcon from '@mui/icons-material/Logout';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import React from 'react';
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LogoutIcon from "@mui/icons-material/Logout";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import React from "react";
+import { setPopup } from "../../redux/reducers/appSlice";
 import styles from "./NavBar.module.scss";
+import { useDispatch } from "react-redux";
 
 export default function NavBar() {
-   return (
-      <div className={styles.navbar__wrapper}>
-         <div className={styles.navbar}>
-            <div className={styles.navbar__item}>
-               <IconButton className={styles.icon} onClick={() => console.log("test")}>
-                  <QuestionAnswerIcon/>
-               </IconButton>
-               <IconButton className={styles.icon}>
-                  <CalendarTodayIcon/>
-               </IconButton>
-               <IconButton className={styles.icon}>
-                  <LocationOnIcon/>
-               </IconButton>
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    function push(path) {
+        history.push(path);
+        
+        // Reset all redux states
+        dispatch(
+            setPopup(undefined)
+        );
+    }
+
+    return (
+        <div className={styles.navbar__wrapper}>
+            <div className={styles.navbar}>
+                <div className={styles.navbar__item}>
+                    <IconButton
+                        className={styles.icon}
+                    >
+                        <QuestionAnswerIcon />
+                    </IconButton>
+                    <IconButton className={styles.icon} onClick={() => push("/app/events")}>
+                        <CalendarTodayIcon />
+                    </IconButton>
+                    <IconButton className={styles.icon} onClick={() => push("/app")}>
+                        <LocationOnIcon />
+                    </IconButton>
+                </div>
+                <div className={styles.navbar__bottom}>
+                    <IconButton className={styles.icon}>
+                        <LogoutIcon />
+                    </IconButton>
+                </div>
             </div>
-            <div className={styles.navbar__bottom}>
-               <IconButton className={styles.icon}>
-                  <LogoutIcon/>
-               </IconButton>
-            </div>
-         </div>
-      </div>
-   )
+        </div>
+    );
 }
