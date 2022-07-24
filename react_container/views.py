@@ -13,6 +13,8 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.middleware.csrf import get_token
 from rest_framework import serializers, response
 from rest_framework.views import APIView
+import datetime
+from dateutil.relativedelta import relativedelta
 
 
 from react_container.models import Event, Restaurant
@@ -133,10 +135,14 @@ class getEvents(APIView):
 
 class getPopularEvents(APIView):
     def get(self, request):
-        soonEvents = Event.objects.filter()
+        soonEvents = Event.objects.filter(first_date__lte=(datetime.date.today() + relativedelta(days=2)))
+        serializer = EventSerializer(soonEvents, many=True)
+        return response.Response(serializer.data)
+
+
     
 class getRestaurants(APIView):
     def get(self, request):
-        all_restaurants = Restaurant.objects.all(json.loads(all_dates))
+        all_restaurants = Restaurant.objects.all()
         serializer = RestaurantSerializer(all_restaurants, many=True)
         return response.Response(serializer.data)
