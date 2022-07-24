@@ -1,0 +1,25 @@
+@use "../../variables";
+
+.filter-bar {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    background-color: variables.$color-neutral;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 100;
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.filter-icon {
+    cursor: pointer;
+}
+.filter-icon-active {
+    cursor: pointer;
+    fill: variables.$color-primary;
+}
